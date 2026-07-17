@@ -10,7 +10,7 @@ SECURITY DEFINER
 AS $$
 BEGIN
   PERFORM net.http_post(
-    url := 'https://your-actual-vercel-url.vercel.app/api/cron/check-prices',
+    url := 'https://deal-dropper.vercel.app/api/cron/check-prices',
     headers := jsonb_build_object(
       'Content-Type', 'application/json',
       'Authorization', 'Bearer dc528db5c63eabb7cbdf145f207b8b92af0ad325ce529e8927c65dee3ebd364c'
