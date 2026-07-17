@@ -2,7 +2,7 @@
 
 DealDrop is an intelligent product price tracker that ensures you never miss a price drop on your favorite e-commerce items. Simply paste a product URL, and DealDrop will continuously monitor its price, visually chart its history, and instantly email you when the price drops!
 
-![Deal Drop](public/deal-drop-logo.png)
+![Deal Drop](public/dealdrop-logo.jpeg)
 
 🔗 **Live Demo:** [https://deal-dropper.vercel.app](https://deal-dropper.vercel.app)
 
