@@ -9,6 +9,15 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -37,12 +46,12 @@ function getStoreName(url) {
 export default function ProductCard({ product, isPublic = false }) {
   const [showChart, setShowChart] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleDelete = async () => {
-    if (!confirm("Remove this product from tracking?")) return;
-
     setDeleting(true);
     await deleteProduct(product.id);
+    setShowDeleteModal(false);
   };
   
   const storeName = getStoreName(product.url);
@@ -112,16 +121,35 @@ export default function ProductCard({ product, isPublic = false }) {
           </Button>
 
           {!isPublic && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleDelete}
-              disabled={deleting}
-              className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-1"
-            >
-              <Trash2 className="w-4 h-4" />
-              Remove
-            </Button>
+            <Dialog open={showDeleteModal} onOpenChange={setShowDeleteModal}>
+              <DialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  disabled={deleting}
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-1"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  Remove
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Remove Product</DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to stop tracking this product? This action cannot be undone.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter className="mt-4">
+                  <Button variant="outline" onClick={() => setShowDeleteModal(false)} disabled={deleting}>
+                    Cancel
+                  </Button>
+                  <Button variant="destructive" onClick={handleDelete} disabled={deleting}>
+                    {deleting ? "Removing..." : "Remove"}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           )}
         </div>
       </CardContent>
