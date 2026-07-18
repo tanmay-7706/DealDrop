@@ -171,6 +171,50 @@ export async function getTrendingProducts() {
       }
     }
     
+    // Seed with mock data if we have fewer than 3 products to show engagement
+    if (uniqueProducts.length < 3) {
+      const mockProducts = [
+        {
+          id: "mock-1",
+          name: "Apple AirPods Pro (2nd Generation)",
+          url: "https://www.apple.com/shop/product/MTJV3AM/A/airpods-pro",
+          current_price: 249.00,
+          currency: "USD",
+          image_url: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1694014871985",
+          created_at: new Date().toISOString(),
+          isPublic: true // mock flag
+        },
+        {
+          id: "mock-2",
+          name: "Sony WH-1000XM5 Wireless Headphones",
+          url: "https://electronics.sony.com/audio/headphones/headband/p/wh1000xm5-b",
+          current_price: 398.00,
+          currency: "USD",
+          image_url: "https://electronics.sony.com/image/5d02da5df552836db894cead8a68f5f3?fmt=pjpeg&wid=330&bgcolor=FFFFFF&bgc=FFFFFF",
+          created_at: new Date().toISOString(),
+          isPublic: true
+        },
+        {
+          id: "mock-3",
+          name: "Dyson Airwrap™ multi-styler",
+          url: "https://www.dyson.com/hair-care/hair-stylers/airwrap",
+          current_price: 599.99,
+          currency: "USD",
+          image_url: "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/primary/395386-01.png?$responsive$&fmt=png-alpha&cropPathE=desktop&fit=stretch,1&wid=1920",
+          created_at: new Date().toISOString(),
+          isPublic: true
+        }
+      ];
+      
+      // Fill the remaining slots with mock products
+      for (const mock of mockProducts) {
+        if (uniqueProducts.length >= 6) break;
+        if (!urls.has(mock.url)) {
+          uniqueProducts.push(mock);
+        }
+      }
+    }
+
     return uniqueProducts;
   } catch (error) {
     console.error("Get trending products error:", error);
