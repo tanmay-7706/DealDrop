@@ -148,3 +148,32 @@ export async function signOut() {
   revalidatePath("/");
   redirect("/");
 }
+
+export async function getTrendingProducts() {
+  try {
+    const { createAdminClient } = await import("@/utils/supabase/admin");
+    const adminSupabase = createAdminClient();
+    const { data, error } = await adminSupabase
+      .from("products")
+      .select("*")
+      .order("updated_at", { ascending: false })
+      .limit(6);
+
+    if (error) throw error;
+    
+    // Deduplicate by URL in case multiple users track the same product
+    const uniqueProducts = [];
+    const urls = new Set();
+    for (const p of (data || [])) {
+      if (!urls.has(p.url)) {
+        urls.add(p.url);
+        uniqueProducts.push(p);
+      }
+    }
+    
+    return uniqueProducts;
+  } catch (error) {
+    console.error("Get trending products error:", error);
+    return [];
+  }
+}

@@ -50,30 +50,68 @@ export default function PriceChart({ productId }) {
     );
   }
 
+  const prices = data.map(d => d.price);
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+  const avgPrice = prices.reduce((a, b) => a + b, 0) / prices.length;
+  const currentPrice = prices[prices.length - 1];
+  
+  const isGoodDeal = currentPrice <= avgPrice && currentPrice <= minPrice * 1.05;
+
   return (
-    <div className="w-full">
-      <h4 className="text-sm font-semibold mb-4 text-gray-700">
-        Price History
-      </h4>
-      <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-          <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="#9ca3af" />
-          <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" />
+    <div className="w-full space-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+          <div className="text-xs text-gray-500 mb-1">Current Price</div>
+          <div className="text-lg font-bold text-gray-900">{currentPrice.toFixed(2)}</div>
+        </div>
+        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+          <div className="text-xs text-gray-500 mb-1">Lowest Price</div>
+          <div className="text-lg font-bold text-green-600">{minPrice.toFixed(2)}</div>
+        </div>
+        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+          <div className="text-xs text-gray-500 mb-1">Highest Price</div>
+          <div className="text-lg font-bold text-red-500">{maxPrice.toFixed(2)}</div>
+        </div>
+        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+          <div className="text-xs text-gray-500 mb-1">Average Price</div>
+          <div className="text-lg font-bold text-gray-700">{avgPrice.toFixed(2)}</div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <h4 className="text-sm font-semibold text-gray-700">Price History</h4>
+        {isGoodDeal ? (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            🟢 Great Time to Buy!
+          </span>
+        ) : (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+            ⏳ Wait for a Drop
+          </span>
+        )}
+      </div>
+
+      <ResponsiveContainer width="100%" height={240}>
+        <LineChart data={data} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
+          <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
+          <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
           <Tooltip
             contentStyle={{
               backgroundColor: "white",
               border: "1px solid #e5e7eb",
-              borderRadius: "6px",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
             }}
           />
           <Line
             type="monotone"
             dataKey="price"
             stroke="#FA5D19"
-            strokeWidth={2}
-            dot={{ fill: "#FA5D19", r: 4 }}
-            activeDot={{ r: 6 }}
+            strokeWidth={3}
+            dot={{ fill: "#FA5D19", r: 4, strokeWidth: 2, stroke: "white" }}
+            activeDot={{ r: 6, fill: "#FA5D19", stroke: "white", strokeWidth: 2 }}
           />
         </LineChart>
       </ResponsiveContainer>

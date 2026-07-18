@@ -1,0 +1,2745 @@
+So recently I wanted to buy this jacket
+on the Black Friday sale but
+unfortunately I missed the moment when
+the price dropped and so I decided why
+don't I go on and build this smart price
+tracker called deal drop which will
+continuously track the price of this
+product and will send me the email alert
+instantly as soon as the price drops and
+we can track any product from any
+e-commerce site in the world. It will go
+on and scrape the data convert it into
+the JSON and stores it inside of our
+database. All of this built in Nex.js JS
+plus shad CN UI for the back end we are
+going to be using superbase and for
+scraping our web we will be using
+firecrawl all right so I've opened VS
+code over here and let's go on and
+initialize our brand new nextJS app so
+I'm going to open my terminal and I'm
+going to say npx create next- app at
+latest and press enter and now you'll
+notice it's going to ask us our project
+name I'm going to say dot if you enter
+anything it will create a new folder
+right here but I'm already inside this
+deal drop folder so I've just pressed
+dot And I'm going to click on no
+customize settings. And here you can
+select your settings. Would you like to
+use TypeScript? No. Yes. Lint, yes.
+React compiler, no. Because it's
+comparatively newer and might cause a
+little bit bugs or something like that.
+Tailwind CSS, yes. SRC directory, no.
+App router, yes. Import ls, no. And now
+it will go on and initialize a brand new
+Nex.js app right here. You can see it is
+installing all the dependencies right
+here. Now, meanwhile, this is
+installing. Let's go to Chrome and
+search shad CN UI. And shad CNUI is
+basically a library that provides us
+pre-built component that we can drag and
+drop inside of our app which makes our
+job super easy. So let me show you if I
+click on get started right here and
+select next.js. This is the installation
+guide for shad cnui. Now let me show you
+before installing it what type of
+component it provides. Like we can see
+we got bunch of different list right
+here. Like for example if I select
+button you can see this is the button
+right here. And if you want to import it
+right here, you can do it by doing
+something like this. It also provides us
+with different different types of
+variants for this button. Different
+sizes right here. Right? Like you can
+see this is a default variant. This is
+an outlined variant. Secondary, there's
+this ghost destru destructive etc.
+Right? So a bunch of different things.
+So why don't we go back and install shad
+cui. So let me just copy this command
+right here. Let me see. Yes, our nextjs
+has been installed. So this is good. I'm
+just going to paste it right here. And
+you're going to see it will ask us to
+proceed. Yes. And just select all of the
+default stuff like neutral over here.
+And there we go. It has successfully
+installed chat UI inside of our app. Now
+why don't we go on and run this? So I'll
+say npm run dev and see what do we have
+over here. So click on this localhost
+3000 and it will open it up inside of
+your browser just like this. Now where
+is this code inside of our app. So if
+you go inside of over here in the app
+folder page.js, js. This is where we
+have our main entry point. So, I'm going
+to remove everything inside of over here
+in the return. And I'll actually rename
+this to page.jsx.
+And I'm going to have a div right here,
+which will say subscribe to roadside
+coder, which you should if you haven't
+yet. Let's get a get rid of this import
+right here. And let's see. Yes, we can
+just see this subscribe to roadside
+coder over here. Okay, nice. Now if I
+show you our deployed app right here. So
+I'll go to dealrop.wordversel.app.
+You'll see we have this button right
+here for tracking the price for signing
+in. If you click on sign in, it provides
+us with this model. So all of these
+different different types of components
+like for example this card component
+right here all come from shads UI. So
+shaden UI is super trending nowadays and
+it is also built on top of Tailwind CSS.
+So it makes our job super easy without
+even you know having an external library
+with us. We just have to use Tailwind
+CSS right here. Okay. Now, how do we use
+it? Let's see. I'm just going to say
+main over here for the main tag. And
+inside this, I'll start writing our
+code. And I'll show you how you can
+eventually use something like Shaten UI
+inside of your app. So, let's say if you
+want to have a header right here, I'm
+going to have a simple header which will
+contain a logo file. Sorry, a logo image
+and our authentication button. Right?
+So, two elements over here. So I'll have
+a div which will contain that image and
+the O button. So obviously if you want
+you can take whatever image that you
+like and you can create it as a logo if
+you can if you want you can generate it
+using AI or you can click the link in
+description down below and you will land
+on my GitHub repository where you can
+take the logo that I have used inside of
+our app over here in the public folder.
+So this deal drop logo and you can put
+it here inside of your public folder.
+You can remove all of these other files.
+We're not going to be needing them. And
+by the way, just to clean up a few
+things in layout.js, you can probably
+remove these fonts from over here from
+right here. Just keep it simple like
+this. If you want to add some title,
+I'll say deal drop over here. If you
+want, you can add some description over
+here, right? As well. So, this looks
+much cleaner now. Okay. Let's uh why
+don't we go on and add our image right
+here, right? For the logo. So let's just
+have another div with the class name
+display flex items to be center and gap
+to be three between them. This is how we
+write tailwind CSS right if you are not
+aware of it. And I'm going to use the
+image tag right here from next slash
+image where I can say src and we can
+provide the path to our image. So it's
+basically right here right deal-lo.png.
+So that is what we can write right here.
+You can provide it with the alt tag as
+well. That is the description of what
+this is all about. Now very important
+thing to do over here is to provide
+width and height right so width can be
+600 and height can be 200 and let's say
+class name be height of 10 to be width
+auto right so basically this is the
+resolution that we are providing to this
+particular image why don't we go on yes
+let's see this is looking really nice
+for our main tag right here I'm going to
+say minimum height to be screen that is
+100 view port height if you hover on
+this you will see these exact classes
+right here what it's using then I'm
+going to provide it with some gradient
+so I'll say background linear to bottom
+right that it will start from top left
+and go to bottom right and I'll say from
+orange 50 via white all the way to
+orange 50 so it's basically a subtle
+gradient right here you'll notice so you
+can see you might be able to see there's
+a gradient over here you'll be able to
+see it better when I provide some color
+to our header. So I'll say background
+white with 80% opacity. So notice this
+section is white and this is sort of an
+orang-ish color. I'll provide it with
+some backdrop blur to be small and some
+border bottom with border color to be
+gray 200. Some display flex and justify
+items to be between so that logo is on
+left side and the o button is on the
+right side and items to be center.
+Right? So let's see. Yes, something like
+this. This is exactly what we want with
+some border and everything for this div
+right here which wraps both of these
+things. So below this as I mentioned we
+will have our o button right here. So
+for this parent div I'm going to say max
+weight to be 7 xls MX auto so that we
+have even margin on both of the sides.
+Some padding of horizontal and some
+padding of vertical display flex justify
+between and items to be center. So let's
+see. Yeah, something like this. When we
+have something over here, a button, it
+will be on the right side. So, let me
+show you how we can add it button. So,
+we'll be importing from shad cui. So,
+I'll say button. So, actually before
+that, we have to install this button as
+well. Right? So, if I show you in shad
+cnui, if you go to the button component,
+see to install it, you just have to say
+npx chat at latest add button. So, if
+you go to your terminal, let's open a
+new terminal over here. And I'm going to
+paste this right here. And what this
+will do, it will create a new folder
+over here called components. And inside
+this, it will have this UI folder where
+it will keep all of these buttons and
+all of the other chats and UI related
+components. Right? So cool. Then we're
+not going to touch this. If you want,
+you can customize this as well. But
+yeah, let's go on and import this. So
+I'll say button. And notice it should be
+imported from add component/ UI and
+whatever the name of the component is.
+And over here I'm going to say sign in.
+So now if we notice inside of our app
+see we have this right here. We can
+provide it some variant like variant
+default. We can provide it with some
+size let's say small and some custom
+class name over here as well like
+background orange 500 when we hover on
+it background orange 600 and gap to be
+two. So something like this. Yeah. If
+you also want to provide some icon over
+here, shaden UI also installs lucid
+icons from where you can uh like import
+something like log in icon something
+like this and you can provide it with
+some class name of width to be four and
+height to be four. Let's go on and
+check. Yes, you can see this icon right
+here. Now I need to understand why is
+this not on both of the sides. I think
+accidentally I have added these classes
+over here. It should not be over here.
+If we save this now. Yes, now it's
+looking better. Let's make this sticky
+so that it's rem like it remains on the
+top. So I'll say top to be zero. Let me
+just make this a little bit smaller.
+Yeah. And Z index to be 10. So that
+remains on the top. Okay. This looks
+good, I guess. Yeah, this is fine. Now
+below this header component is where we
+will be creating our hero section. So if
+you see inside of our deployed app, this
+is our hero section which has this input
+and all of these cards over here as
+well. So for these cards, obviously it's
+your choice if you want to keep them or
+not or whatever content that you want to
+keep inside of them. We will render them
+from an object, right? So what you can
+do, you can just go to this app folder
+in my g repository page.js and here we
+have this object for features, right?
+Just copy this up and paste it right
+over here. Also for this component, we
+will be having like our user details
+over here as well. So for now, null and
+we will be rendering the products inside
+of our homepage as well, right? So for
+now, let's just say const products
+equals an empty array, right? Cool. Then
+uh we will render these features over
+here as well. So below this header I'll
+say section since this is our hero
+section and I'll give it the class name
+of some vertical padding of 20 and
+horizontal padding of four. Inside of
+this we are going to be having a div for
+our hero text which will have class name
+of max width to be 7 xl some MX auto
+sets in the very center some text to be
+center and inside of this we will be
+adding all of those text like first of
+all I'll be adding this small text on
+the top made with love by roadside
+coder. So let's have our div over here
+for this text. Then below it, I'll have
+I'll have an H2 which will say never
+miss a price drop. Then for the
+subtitle, we can have a paragraph tag
+which will say track prices from any
+e-commerce site. Okay, let's see. Okay,
+it's saying that rabbit is not defined.
+So we have to import these icons over
+here as well. Don't worry, I'll explain
+what this is all about. And this bell as
+well. Make sure to import all of these
+from Lucid React like this. Okay, let's
+first see what we have written over
+here. Yes, this looks good. Let's style
+this a little bit. First of all, for
+this made with love line, I'm going to
+say inline flex items to be center, some
+gap of two between the items, background
+orange of 100, text orange of 700, some
+padding vertical and horizontal, rounded
+full from the sides, text to be small,
+font medium, and margin bottom to be
+six. For this title right here, I'm
+going to say text to be 5 XL, font to be
+bold, text gray to be 900, some margin
+bottom, and tracking type so the words
+are a little bit tighter. And for the
+paragraph, I'm going to say text to be
+Excel which is around 20 pixel. Text
+color to be gray 600. Margin bottom to
+be 6 uh sorry 12. And some max width to
+be 2x so it does not spread from end to
+end, right? And some MX auto. So let's
+see. Yes, this looks awesome. Now after
+this section not section I mean after
+this paragraph is where we will be
+rendering our product form. So basically
+this thing right here right and after
+this we will be rendering all of our
+features. So basically features will
+only be visible if there is no product
+and user is logged in. So notice if I
+try to sign in over here continue with
+Google. See when the products are
+visible then those features are not
+visible after logging in. Right? So
+let's render these features. So we've
+already taken this uh dummy products
+empty array over here. Obviously later
+on we will be fetching them from our
+database. So right here I'm going to say
+products dotlength is equals to zero.
+Then inside this we're going to render a
+div. Okay. So inside this div we will be
+rendering all of these features that we
+have taken over here. First of all for
+this div I'm going to give this some
+class name of display grid. In the
+medium screens, grid columns will be
+three. Gap to be six, max width to be 4
+XL, some MX auto, and margin top to be
+16. So, features dot map. So, let's map
+through this. Let's dstructure all of
+these things. So, for example, icon,
+we're going to rename it to icon, title,
+and description. And over here inside of
+this, I'm going to be rendering a div
+right here with key to be title and
+class name to be background white. some
+padding of six rounded excel border
+border gray 200 and inside this first of
+all we will render the icon. So icon
+will be width and height to be 12
+background or to be 100 rounded large
+display flex items to be center justify
+center and some margin bottom to be four
+and MX auto right and we will render the
+icon over here. So now if you notice yes
+we can see all of the icons right here.
+Then simply below this we can render our
+title and description right. So
+something like this in the H3 and
+paragraph right simple enough there we
+go this is looking awesome now when
+there is no product or user is not
+logged in we can show the empty state so
+if we sign out so right now it won't be
+visible actually because user should be
+signed in and if user is signed in and
+then he doesn't have any product then we
+can show an empty state right here so I
+guess we'll worry about that later on
+when we have implemented user
+authentication inside of our app right
+okay nice now when it comes to this
+input right here. We'll be creating a
+separate component for this. So inside
+of over here in the components, I'm
+going to create a new file add product
+form dot jsx r a fce add product forms.
+Wait, I have added this dash right here.
+Let me remove that. Yes. And this will
+basically take the user's information if
+the user is logged in or not right now.
+So we will be importing it right here.
+Add product form just like this. and we
+will provide it with user something like
+this. Let's see. Yes, add product form.
+Let's why don't we go on and uh quickly
+create this form over here. Form inside
+this form we're going to have our div
+which will have class name of display
+flex flex column in the bigger screens
+flex row and gap to be two. So basically
+we will have an input. So we will be
+using different different types of shadi
+component like for example over here
+input. So why don't we go on and install
+all of them at once so that we don't
+have to install them one by one later.
+Right? So for example we have already
+installed button we will be installing
+input alert
+badge card dialogue for all the models
+ser for the toast the toast pop-up. And
+I guess that's pretty much it. Let's
+press enter and it will install it.
+There we go. It's done. Okay. Nice.
+Let's close this. And over here I'm
+going to be having the input component
+right here. This input right here it
+will be of type URL. And we also need to
+take a state over here. So use state for
+storing this value that we'll be
+inputting from the user right the actual
+URL that we are supposed to track. So
+I'll call it URL and set URL. And since
+we're using hooks over here in nextJS
+the dynamic component should be a client
+component. So I'll say use client
+whenever we are trying to add any hook
+or such complex you know dynamic logic
+that should be a client component. If
+it's a simple component it can be a
+server component and we can avoid this
+flag right here. Okay. Now obviously if
+you want to change this state I'm going
+to say value to be URL on change I'm
+going to set this URL with e.target
+target do value and then we can provide
+it with more things like placeholder
+like paste product URL from whatever
+website class name can be hide to be 12
+text base and it will be required we can
+also actually have a loading state right
+here which will disable this whenever we
+are loading or we are fetching right so
+I'll say disabled
+equals loading okay let's see how this
+looks pretty good for our form right
+here I'll say class name to be width
+full max width to be 2 XL and MX auto
+let's see okay pretty good now um also
+when we submit our form we will also
+need to have a handle submit right so on
+submit handle submit so let me just
+create a empty function for now so I'll
+say const handle submit right here this
+will be an asynchronous function and
+take an event right here we'll worry
+about it later on when we make our API
+call inside of Right after this input,
+we are also going to be having a button
+for tracking that particular product.
+Right? So inside this button, I'm going
+to say if the loading is going on, I'm
+going to show this loader to icon over
+here with margin right to be two, height
+and width to be four and animate spin
+and show adding. Otherwise, we're going
+to show track price. So let's see. Yes,
+something like this. Track price. Let's
+add some class names over here.
+Actually, let's say background orange to
+be 500 on hover background orange 600.
+Height to be 10. In the bigger screens
+height to be 12 and some horizontal
+padding type is going to be submit
+disabled loading. And after this we can
+also provide some size of large. Let's
+see. Yes, now it looks much better.
+Awesome. Now um below this form actually
+uh let's just wrap it in this react
+fragment just like this. And this is
+where we will be also having our
+authentication model displayed. Right?
+So I'll say O model. So basically if
+user tries to add the product and they
+are not logged in, it will trigger this
+O model right here and ask them to
+login. So see in this our deploy if I
+try to click on track price. Okay, let's
+just enter something. Let's enter some
+legit URL for example this. And if I
+click on track price, see it's asking
+them to log in first. Okay. So cool.
+Then there's that. We have created the
+basic UI for our app. Now, why don't we
+first go on and set up the back end for
+our app and also the service which will
+help us to scrape different different
+websites as like I showed you in the
+intro. So, first of all, let's do that.
+So, click the link in description down
+below and you will land on firecrawl.
+And firecrawl not only helps you to
+scrape data, it also turns it into LLM
+ready data. What does that mean? So
+let's say if I ask it to scrape data
+from Amazon's some product page right
+but I'll say only fetch pricing the name
+of the product description and if it's
+available or not right it will only do
+that otherwise you'll have to tailor
+your scraping for each and every website
+separately right and that would be a
+absolute headache and firecrawl makes it
+super easy and I'll show you and by the
+way it is free to get started so if I
+show you if I scroll down notice this is
+one of the examples of how it you know
+scrapes the data and provides it to us
+in a structured format and it basically
+provides us three major functions. One
+is scrape ready data from the website.
+You can see something like this. We will
+obviously be using NodeJS over here. So
+something like this and also it is super
+easy to use as well. The second feature
+that it provides is search and by the
+way this is the feature that we will be
+using inside of this app. search helps
+us to search multiple different URLs for
+a particular information and get the
+full content right so something like
+this app dot search and crawl as well so
+let's say if you want to crawl a
+particular website right if you want to
+exclude some parts it can also do that
+as well so it's highly customizable
+according to your use case cool then why
+don't we go on and sign up first let's
+continue with Google and there we go we
+are in you can see our API key right
+here which will help us to develop this
+app, right? Okay, why don't we go on and
+click on playground right here and
+explore how this works. So over here you
+can see we have multiple different
+options right here, right? Search, map,
+scrape and all. So this is the one that
+we want to test. So let me get a product
+URL right here. For example, this Zara
+URL and I'm going to be pasting it right
+here. Now notice we have bunch of
+different options over here. Like for
+example in the settings we have option
+to include main content only if you want
+to parse it as PDF or not. Right? We can
+also choose to structure our data in the
+CSV format as well over here or you can
+also choose the output format. Currently
+it's selected as markdown. Let me select
+JSON right here. And here we can define
+our prompt on exactly what we want. Like
+for example I'm going to enter extract
+the product name as this, price as this,
+currency code and image URL in these.
+Right? Right? You can exactly define
+your schema over here as well. So let me
+just do that. I'm going to say product
+name, current price, currency code and
+product image URL over here as well. And
+we can also define which is required. So
+I'm going to choose both of these as
+required and click on save options. Now
+why don't we go and click on start
+scraping. And notice we have this get
+code option over here as well. So you
+can get the exact code ready to be added
+inside of your application. You can see
+with formats and everything. So all of
+these things are super cool. So notice
+we have all of these data right here.
+Let's verify it. So this the name of the
+product, pricing, currency code, and
+even the product image URL, right? This
+is why I absolutely love firecrawl. It
+saves so much of my time. Amazing.
+Similar to this, you guys can explore
+these other options over here as well
+and build your app according to this.
+Right? So why don't we just for now go
+on and copy this API key right here.
+Actually I'll just go to API key and
+I'll create a new API key for this
+tutorial. So deal drop YT create key.
+There we go. I'll just copy it up so
+that I can delete this after the URL so
+that you guys cannot use this API key.
+Uh I'm just going to go on and create a
+envir. And this is where I'm going to be
+keeping my API key over here. Let's name
+it firecrawl API key and save this. We
+will also be needing to install the
+package for firecrawl right here. So I'm
+going to say npm install at
+mendable/firecrol-js.
+So this is something that we saw as a
+part of playground right but what if we
+want to go on and build our app using
+scrape. So if I click on this scrape
+right here, obviously I showed you that
+they provide us the code from over here
+as well. But they have their own
+comprehensive documentation right here
+which you guys can go through and
+understand how each and everything
+works, right? And I'll show you as we
+move forward in this video. Cool. Then
+so I guess we have installed this. If
+you go to the quick start right here, it
+will show you. Yep, this is the package.
+So npm install atible/firecrol-js.
+Awesome. Also guys, make sure the
+version that you're installing right
+here for different different
+dependencies is same as mine. Otherwise,
+this might throw an error and you might
+have to go through the documentation,
+right? So notice in my GitHub
+repository, you can check in
+package.json. If you have installed the
+newer version, obviously you can go
+through their docs right here and you
+can compare on what has changed right
+here. Right? You can ask their docs a
+question over here as well. These are
+super helpful. Okay, nice. So we are
+done with hull setup. Now next we have
+to set up our backend as well. And for
+our backend we are going to be using
+superbase. And you can click the link in
+description down below and you will land
+on this page right here. You might have
+heard of superbase. It is super popular
+and it uses a postgress SQL database and
+provides us with features like
+authentication, instant APIs without
+needing any server setup, edge
+functions, real-time subscription
+storage, vector embedding and much more.
+You might have seen my previous project
+tutorials. I have used superbase
+multiple times in this channel, right?
+So why don't we go on and click on start
+your project. It might ask you to create
+some organization over here. And then
+inside of it, you can create a new
+project over here. You can select your
+organization. You can enter your project
+name. So I'll say deal drop some
+database password. Let me just randomly
+generate a password over here. Region
+you can select over here. I'll select
+South Asia because that is nearest to
+me. and click on create new project. And
+there we go. We are in. Now over here,
+Superbase has set up the complete
+progress SQL database for you. All you
+have to do is click on this connect over
+here and connect it to your app
+according to what you're using. So I'm
+I'm going to click on app frameworks
+right here. I'm going to select Nex.js
+app router with superbase-js. And notice
+how it also provides you with the code
+for different different files that you
+will be needing to add inside of your
+application. Okay, fine. Uh before that
+let's just copy both of these
+environment variables. So I'll just copy
+it up and I'll paste it inside of this
+env right here. Just like this. This
+will enable us to connect to our
+superbase. We will also be needing a
+couple of more keys over here. So if you
+go to project settings over here and
+click on API keys and go to legacy anon,
+service role key. So we going to be
+needing both of these API keys as well
+to configure cron jobs and all the other
+things which you'll understand later on.
+I'll just copy both of them over here.
+So I'll reveal and copy this as well.
+I'll call it to be next public public
+superbase anon key and I'll copy this up
+and paste this right here. And this one
+will be called superbase service ro key.
+So let's remove this because it's going
+to be used server side when we are
+trying to trigger the email to our user.
+And again you don't need to understand
+these things as of now. I'll be
+explaining this as we move forward in
+this video. All right. Now, let's go on
+and connect our app with Superbase.
+Right. So, I'll close this up. First of
+all, actually, I'm just going to click
+on over here Next.js guide. And we'll
+get the complete guide right here on how
+we can install Superbase inside of our
+application. If you want, you can set up
+your complete NexJS project just like
+this with Superbase out of the box. And
+notice over here, we are getting all of
+these API keys that we copied from over
+there from here as well, right? So you
+can copy them from directly over here as
+well. Now what I'll do, I'll go to this
+web app demos and click on next.js right
+here. This is a better guide to set up
+our project. So let's see. We have
+already gotten our API details and all
+over here. Let's go on and install
+superbase inside of our app. So npm
+install. So I'll just go to my terminal
+over here and paste this just like this.
+I think we also need to install one more
+package. So and by the way, we have
+copied both of these things. So it's
+good. npm install at superbase/sr.
+So, okay, we'll do that. Okay, this is
+done. Let's uh install this one as well
+at superbase/sr. This one is for our
+server components for making the backend
+calls. So, you can see right here client
+component client and server component
+client both are different and we are
+going to be creating them next. So, see
+we have to create this client.ts and
+server.ts or js as well, right? So I'll
+just copy this up and go to my app. And
+right here we have this lip. Actually
+I'm going to create a new folder right
+here called utils. And here I'll create
+a new folder superbase.
+And let's keep all of our superbase
+files right here separately. First of
+all client.js
+and paste it. Make sure to remove this
+exclamation marks over here because this
+we are not using TypeScript over here.
+If you want you can use the publishable
+key or you can also use anon key over
+here as well. Let's keep it publishable
+key for now. Then we have to copy this
+server.js file. And keep in mind all of
+this is a part of our setup. So you
+don't need to worry about why we are
+copy pasting over here. So I'll create a
+new file called server.js
+and paste this one over here as well.
+Make sure to remove these exclamations
+from over here. And I guess we are good
+to go. Let's see if there's any other
+file that we need to create. Next.js
+proxy. Okay. So, this is basically will
+be helping us when we are going to be
+setting up our user authentication
+inside of our app. Right. So, whenever
+we are trying to access our app, this
+will stop and check if user is logged in
+or not. Right? So, in proxy.ts, we need
+to add this code. So, I'll just copy it
+up. Go to my project and create a new
+file proxy.js.
+So, earlier this was called as
+middleware.js, but now from nextJS 16
+it's called proxy.js. JS. So let's paste
+this right here. I'm going to remove
+these types and this line over here as
+well. And it's taking it from at
+lib/sup/proxy.
+I think we need to create um some sort
+of middleware file right here. Let me
+check. Yes, this thing over here. So
+we're going to copy it up. You can call
+it middleware or proxy. I generally like
+to call it middleware.js.
+And paste this code over here. Let's
+again get rid of these exclamation
+marks, all of these types right here.
+Again, don't need to worry about all of
+these things for now. All right. Um,
+this looks good. Let me just verify
+this. Yes. And you can see it's
+returning superbase.get user. And why
+this is happening is because in proxy
+you can see this is the entry point for
+our app. And when user enters, it will
+verify to see if user is logged in or
+not, right? to provide them with the
+functions of our app. All right, now
+that we have created our client and
+server components over here, why don't
+we first go on and set up user
+authentication inside of our app. But
+before moving forward, if you're someone
+who's preparing for interviews, you can
+definitely go and check out my front-end
+interview preparation course. This is
+the only thing that you will ever need
+to prepare for your front-end
+interviews. And not only this, I've
+covered every single topic of ReactJS
+like React router DOM, Redux, all of the
+hooks, class-based component, function
+based component, React, even the
+performance optimization which is asked
+from senior developers a lot. Tons of
+machine coding questions as well and
+obviously in-depth interview preparation
+course on JavaScript as well. And not
+just this, along with this course, you
+get an active Discord community where
+you can ask your doubts whenever you get
+stuck and we will be there to help you.
+So click the link in description down
+below because right now we're having the
+biggest sale of the year for a very
+limited time. So don't forget to check
+it out or you can also scan this QR code
+on your screen to go directly to the
+course page. So I'll go to this
+authentication and see it provides us
+with this user table over here. And what
+we want is I want to add Google
+authentication. So I'll click on this
+signin providers and if you scroll down
+you can see we have bunch of different
+providers over here and click on Google
+over here and I'm I'm going to click on
+enable signin with Google and now we
+have to get this client ID and client
+secret for our authent and how would you
+do this? Let's click on docs right here
+and it will tell you exactly what you
+need to do to set it up. So we have to
+create a Google cloud account over here.
+So let's click on this. Here we are in
+the Google cloud console. If you don't
+have any project, you can just create it
+right here. Just click on these three
+lines over here, hamburger menu and
+click on API and services. Now, click on
+this oath consent screen and you have to
+click on get started to configure it.
+Okay. So, first of all, we're going to
+enter the name of our apps. Let's say
+deal drop user support email. You can
+enter your own email over here. Next,
+I'm going to choose external. So,
+available to test to any user with a
+Google account. Next, contact
+information. Let's just enter my own
+email over here. Click on next and I
+agree and continue and create. So this
+will help us to create our consent
+screen where we you know go on and
+login. Now click on create oath client.
+Application type is going to be web
+application. Name again let's enter deal
+drop. Now over here we have to add
+authorized JavaScript origins which we
+can get from over here I believe. Yes.
+Call back URL. So copy this up. I think
+this call back URL is going to go over
+here in the redirect URLs right. So
+press enter and over here oops click on
+it over here again and here in the
+authorized JavaScript origins we want to
+enter. So currently we are working on
+local host right. So let's just and
+paste it right here. Something like
+this. And let's click on save. Actually
+let's see if it looks good. Okay it is
+created. Let's copy this client ID over
+here. And we want to paste it right
+here. And then we want to copy this
+client secret over here as well. And
+paste it over here. I'm not sure if we
+want to add this local host here or not.
+I forgot. It's such a long process. Let
+me just delete it for now and click on
+save. Okay, so this is done. I'll click
+on save right here. And looks like it
+would have configured our Google login.
+Okay. And by the way, inside of our app,
+we had some errors. So at lib
+superbase/proxy. Okay. So this is in
+this proxy.js file, it should be
+middleware.
+Save this. And now we should not have
+any error. Okay. It should be
+utils/supbase/mware.
+And if you see such a error, what you
+need to do, you need to just rename this
+publishable default key to publishable
+key and uh everything should work just
+fine. Yes, nice. Why don't we go on and
+configure our user authentication first
+like create that user authentication
+model over here, right? So over here
+actually we are going to be creating
+this separately inside of the component.
+So I'll create a new file o model.js
+r a f model. Now inside of this we will
+be creating a dialogue. So from shad CN
+UI I'm going to copy this dialogue
+component. Yes, this one. This is
+exactly what we want. So what I'll do
+I'll just copy it and paste this right
+here. And let's rename our component to
+be O model. Let's remove everything that
+we have right here. We are not going to
+be needing the dialogue footer. Oops.
+Dialogue footer. Let's remove this one.
+not going to be needing this form over
+here as well. We'll be taking out is
+open and on close from over here because
+we will not be having any dialogue
+trigger. So dialog trigger is basically
+the button which triggers the dialogue
+but we will be triggering it externally
+right. So we'll be taking this is open
+which will be true or false accordingly
+and then on close function which will
+enable us to close the dialogue. So I'll
+say open to be is open on open chance to
+on close. Okay let's keep it max width
+to be medium. Okay. Now where will we uh
+we be importing it? So let's see um I
+think inside of our page
+js where is it page.jsx JSX we had this
+o like sign in button right yes and if
+user is not logged in we can show over
+here sign out component as well right so
+what I'll do I'll create a new component
+over here so new file o button dot jsx
+ifce and inside of this simply I'll go
+to page jsx I'll take this button from
+over and paste this right here let's
+remove this div and import our button
+over here and this login icon as well.
+Now over here we're going to be taking a
+state for tracking if our O model is
+open or not. So show O model. Let's make
+it a client component. Use client. And
+here below this button we can import
+this O model. So let's oops import it.
+Something like this. And when we click
+on this button I'm going to make set
+show O model to be true. Why don't we go
+on and try it out? Let's go to our app.
+Click on sign in. Okay. It's not
+working. What's wrong? Let's go to our O
+model. This looks fine. I guess we have
+to import this O button over here in the
+page.jsx as well, right? So, O button,
+import it. We will also be providing it
+with user information if user is
+currently logged in or not. So, we'll
+take it over here and accordingly we can
+show sign in or sign out button. But
+first, let me just check it. If I click
+on sign in, yes, we can see the model
+popping up right here. Awesome. Now I
+can add a button over here. I'll say if
+user is there that is user is signed in
+then we can simply render a button
+similar to this one with the log out
+icon and sign out text over here.
+Variant ghost size small type submit
+class name gap to be two and when we
+click on this button we will trigger
+this action of sign out. So obviously
+this uh does not exist yet. So I'm just
+going to keep it as empty for now. Let's
+see if I click on sign in. This is fine.
+But let's suppose this was true
+actually. Yes, we have sign out over
+here. Cool. Let's first create the
+functionality of sign in over here.
+Right. So inside of my O model, let me
+just get rid of these imports that we
+are not going to be needing. Okay. So
+right here, I'll provide some dialogue
+title and description to be sign in to
+continue and track product prices and
+get alerts on price drop. Okay. Then
+below this dialogue header, I'm going to
+be having a div display flex flex column
+gap four and some vertical padding of
+four. Then we will have a button inside
+of over here which will be coming from
+shad cnui and this will have variant
+outline class name width full gap to be
+two size to be large. Inside this button
+I'm going to say continue with Google
+and if you want you can add some login
+icon or what you can do you can just go
+to my GitHub repository. I've added an
+icon over here actually. So in the O
+model, you can just copy this SVG icon
+for Google. So I'll just paste it over
+here. And now if we see inside of our
+app how it looks. Yes, something like
+this, right? And when we click on this
+button, we will trigger this handle
+Google login function which obviously
+does not exist. So I'll create it const
+handle Google login. This will be an
+arrow function. Now inside of this, we
+will write the um you know login logic
+over here. First of all, let me just
+make this a client component. So use
+client and we will be importing our
+create client over here and we will be
+importing this create client over here
+and we will be importing this create
+client over here from at util/s
+superbase/client
+and this will help us out to you know
+let user logged in visible and this will
+help us to route user to login. So I'll
+say async and we'll take whatever the
+origin of our window is for adding the
+redirect URL and I'll add a function
+over here await superbase
+sign in with o and the super obviously
+this that we've taken over here inside
+this we're going to take an object and
+I'll say provider to be we selected
+Google right so I'll say Google over
+here and then we have to add the
+redirect URL so instead of options I'll
+say redirect to that is after logging in
+it should come back to over here right
+so I'll say origin oops origin that is
+this /
+callback and we have to create this /
+callback over here so that it can accept
+a token that will be sent from google
+right so um over here inside of app I'll
+create a new folder o new folder call
+back inside this I'm going to create a
+new file route dot js which will receive
+the token so it will be export async
+function get. So it's basically an API
+call right here. So inside this first of
+all I'll take this request dot URL
+whatever that we're getting from Google
+and I'll get this code from our URL that
+Google is sending us. Right? We're going
+to take this code and I'll say if code
+exists then superbase await create
+client again but this time it will be
+from server component. Right? Since we
+are doing serverside call I'll say
+superbase.exchange
+code for session. Basically, all of this
+you can find in their docs as well. It's
+mostly a one-time setup. And then we can
+simply return redirect to new URL slash
+and request dot URL. Okay, I think this
+should handle the authentication for us.
+Let's also write the logic for logout.
+So over here in the app, I'm going to
+get a new file called actions.js.
+And here I'll simply say export async
+function. And by the way, this is a
+server action, right? So we have to say
+use server over here on the top. So
+export async function and we can call it
+sign out. Instead of this we are simply
+going to say await create client and we
+will importing from slash like /s
+superbase/server and I'm going to
+trigger superbase.out.
+I'm going to say revalidate path that is
+fetch all the data in this path that is
+slash and redirect us to / route. So
+import it from next slashnavigation.
+Okay, let's take this and uh we can
+provide it inside of O model, right?
+This is where no sorry in O button. This
+is where we needed to add sign out.
+Okay, something like this. Why don't we
+go on and try it out? So, I'll click on
+sign in over here. Click on continue
+with Google. And there we go. It shows
+me all of my accounts. I'm going to
+select one of my account over here.
+Okay, continue. Okay, it's not working
+for some reason. So, /allback
+is not working. Let's see what's not
+working uh inside of route.js. Okay, I
+guess we have not imported next response
+over here. Okay, why don't we just
+refresh this page over here? I think
+this should work. Okay, let's go on and
+try to sign in again. Continue with
+Google. I'll choose my account. Am I
+logged in? Not too sure. Inside of
+Superbase, if you go to authentication,
+we can see that this user is logged in.
+But over here, it does not show us the
+sign out button. Let's see why is that.
+So, in the O button, this coming from
+page.jsx. Okay. Yeah. Over here because
+user is null by default, right? But what
+we have to do over here is take
+superbase first of all this create
+client actually this will be taken from
+server because this is not a client
+component. Right? So export default
+async function home. Okay. And then we
+will take out the user info such as this
+superbase.get user and we'll take out
+the user information from the data.
+Okay. Nice. I think now it should show
+us yes it shows us signed out. If I
+click on sign out over here and we are
+successfully signed out. Amazing. So we
+have successfully added user
+authentication inside of our app.
+Congratulations. Let me just sign up
+sign in again and add some empty state
+over here. So now that user is signed in
+and we don't have any products over
+here. So what we can do simply in page
+jsx over here below this section I'm
+just simply going to say if user is
+there and products.length is equals to
+zero then we'll simply add a section
+over here. Again, you can change it
+according to you. I'm going to have this
+trending down icon which will say no
+products yet and add your first product
+above to start tracking prices. So, see
+something like this. No products yet and
+something like this, right? This looks
+good. All right. So, now let's go on and
+create the tables inside of our
+database. So, there are actually
+multiple ways to do this. Either you can
+use this table editor right here and
+create it using the UI or you can also
+go to the SQL editor and if you know SQL
+you can enter the commands right here
+and create your own table from over here
+as well but we're going to take the
+easier route that's exactly why we using
+superbase and we're going to click on
+create a table and we're going to create
+our table first. So basically there are
+going to be two tables. First for our
+products and other for storing the
+product history right all of the prices
+of the product over the time. So I'll
+say products and make sure to enable
+role level security which will provide
+us with the different different types of
+authorization inside of our tables right
+like for example some other user cannot
+access some other user's data or delete
+or modify the data etc. Right? I'll show
+you how you can add role level security
+as well. But over here is where we can
+add all of the different different
+fields for our table. Like for example,
+there's going to be an id which can be
+of type UU id. And here the default
+value is going to be generate random uyu
+ID. Right? You don't need to worry about
+this. Apart from that they have given
+this created at which is going to be a
+timestamp. Okay. Let's add a new column.
+So when we are going to be storing a
+product inside of a database, right?
+some user will be creating that product
+and we want a foreign key inside of this
+table related to that particular user.
+So we're going to have a user id field
+over here. The type again is going to be
+the uyu ID because it will be for the
+user table. Default value is not going
+to be anything and in the settings this
+is not nullable. I mean this is not
+going to be null. Then for the next
+column we will be storing the actual URL
+of that particular product and it's
+going to be of type text empty default
+values over here as well is null label
+is not going to be selected add column
+it's going to be name. So let me just
+add these one by one current price again
+make sure to uncheck this is nullable
+over here currency. Now currency can we
+can keep it by default USD or whatever
+like in my case I'm from India so I'll
+keep it INR depends on you by the way
+name is going to be text current price
+is going to be numeric currency is going
+to be text as well then I'm going to say
+image URL again text but this can be
+nullable currency cannot be nullable
+then next apart from created at we can
+have updated at as well so this will be
+time stamp times by default this is
+going to be the same now over here and
+for currency it can be INR as I said
+this is going to be false okay cool so
+this is our table now there's one more
+section over here for foreign keys so as
+I mentioned user ID is going to be the
+foreign key right so I'll click on add
+foreign key relation over here I'm going
+to choose the o table and here I'll
+choose users table now here I want to
+connect my user ID over here to the ID
+of that particular table right this is
+what it belongs to. Now over here
+there's this thing called action if
+reference row is removed. So if users
+table like if that particular user is
+deleted what's going to happen to these
+if you select on cascade that means all
+of these products will be deleted as
+well. Right? So it depends on you. If
+you want to keep it you can just select
+cascade over here. I'm not going to do
+it. I'll just click on save over here
+and save this. And there we go. Our
+table has been created. Awesome. This
+looks good. Let's create another table.
+This one is going to be called price
+history. Again, first of all, the id is
+going to be uyu ID. We don't want this
+created at over here. Then next, this
+will belong to a particular product,
+right? This price history is going to be
+belonging to a particular product that
+we have added right here. So I'll click
+on add column and here I'll say product
+ID and here I'll select UU ID. Again,
+this is going to be a foreign key. We
+don't want anything over here. Add
+column. There's going to be a price
+history, right? So price obviously and
+numeric at column currency it's going to
+be text then checked at whenever we
+checked it right. So time stamps and
+this will be now whenever it happens and
+make sure to remove this is nullable
+from all of these such as this. Okay.
+Now let's add the foreign key relation.
+So I'll click on public and products
+over here. So from product table we want
+to connect the product ID with the ID
+inside of it. Again same thing if you
+want to add cascade you can do that as
+well. So I'm just going to do that. If
+the product is removed, all the history
+related to that particular product will
+be removed as well. Okay, let's save it
+and save this. There we go. Both of the
+tables have been created right here.
+Okay, now I let's say if I want to add
+some unique constraints over here in
+products table, I want to add a
+constraint that only one product can
+only be added once by a user. Like for
+example, if some user added X product,
+right? So that same user cannot add like
+that X product again. So we will prevent
+that from happening. And for that let me
+show you how this SQL editor from
+Superbase works. So I'll say alter
+table. And by the way if you know SQL
+you can do this as well. If you if not
+like just use chat GBT to generate
+these. So products I'll say add conraint
+and the constraint can be called
+products
+user
+URL
+unique. I'll say it will be unique for
+that particular user ID,
+URL. Right? So these cannot be
+duplicated. Okay. Let's click on run
+over here. And you'll notice that yeah,
+it succeeded. Great. Now let's go on and
+add few role policies to secure our
+database. So here in the database, I'm
+going to click on policies. This is
+where we can add role security policies
+to our tables. First of all, for the
+products table, I'm going to click on
+create policy. Let's call it users can
+view their own product. And no other
+user can view some other users product,
+right? So user can view their own
+products. Make sure this select is
+selected over here. Target roles is
+going to be authenticated. And here I'm
+going to be adding expression that oid
+is equals to user ID that is user should
+be logged in. Okay, let's click on save
+policy. There we go. I'm going to create
+another policy and this one will be for
+user can insert their own product and no
+one can you know insert products for
+that particular user. So I call it user
+can insert their own products. It's
+going to be for insert and again same
+thing right here just like this. Let's
+click on save policy. Let's create
+another policy for updation. So user can
+update their own products. It will be
+for update and again the same command
+save policy. Now for the last one is
+delete. So delete user can leave their
+own products and again the same command
+right here. Save policy. All right. Now
+let's create policies for price history
+table. So I'll click on create policy.
+This one will be forgetting. So I'll say
+you users can view price history for
+their products. Right over here you can
+put whatever that you want. It's for
+your own help. It will be select here.
+So this is going to be a little bit
+longer. So here I'm going to say select
+one from products where product ID is
+equals to sorry products do ID is equals
+to price history. ID. We're getting that
+particular product and user should be
+logged in as well. So, we're basically
+checking multiple things over here. Oh,
+by the way, I think I forgot to wait
+hold on. Yeah, this should be
+authenticated for all of them. Make sure
+to update it for update. Authenticated.
+Okay, there's some error over here for
+the updates. I guess we can just delete
+and create it again. Let's delete this
+policy. Make sure all of the others have
+authenticated right here. Okay, this one
+is causing problem as well. So, let me
+just read them again. All right, there
+we go. I have deleted them from right
+here and you know added all of them once
+again. Cool. And you can see they're all
+authenticated. Nice. Now, what is
+indexes? Imagine you're getting the
+information for like getting all the
+products for a user faster. So, we can
+just pre-index all of this information
+inside of our database. So, whenever you
+go on and get this data, it will be much
+quicker. So, like for example, let me
+show you to add an index. Like for
+example, I'm saying create index. This
+is the name of the index on products
+table when it comes to user ID that is
+for a particular user ID I'm trying to
+get all of the products and this will
+index inside of our database right
+similarly I'm going to do for price
+history as well so I'll say create index
+price history product ID so let me just
+zoom it in on price history table for a
+particular product ID and then the third
+one is going to be price history checked
+at index on price history checked at
+descending so basically this will for
+fetching the price history in descending
+order because we want to render it
+inside of our app. Let me show you. See
+over here in this product, we are
+fetching all of these price history in
+the descending order. Right? So, this is
+why it will be useful for us. So, yeah,
+just try to run all of these. I'm going
+to click on run. There we go. Success.
+No rows returned. Awesome. So, we have
+successfully configured our database,
+the tables, role level security,
+everything. All right. Now finally let's
+go on and add the functionality inside
+of our app so that we can enter the URL
+over here scrape the data and then add
+it inside of our database right awesome.
+So first of all for scraping the data
+we've already seen over here in
+firecrawl when we clicked on get code
+right here it gave us this code which
+explained us how we can you know write
+our code with something like we can
+define our schema type object required
+these fields all of these properties
+over here and our prompt as well and
+here inside of the documentation you can
+see there's this scrape function right
+here right which tells us how we can
+scrape the data so we can say await
+firecross dots script and we can provide
+the format just like we selected right
+here and we can provide additional
+information like if we're selecting JSON
+we can provide probably something like
+prompt or schema as well right so if you
+click on get code see type JSON schema
+all of these things right but it depends
+on the type of sorry on version that
+you're using I think this / scrape has
+been added in the new version earlier it
+was called scrape URL
+Right? And by the way, if you're using
+something like Zord, they also support
+this schema right here. Right? So it's
+really flexible to work with. So let's
+do one thing. Why don't we go on and
+install the very latest version of
+firecrawl. So I have I guess the older
+version. But again, as I mentioned, you
+guys should watch out for this. Make
+sure if you have the latest version, if
+you're watching this in the future, then
+maybe your version is different. See,
+now my version is different now that I
+have updated it. Cool. Then we will
+write the code according to this. So
+what I'll do inside of this lib right
+here, I'm going to create a new file
+called firecrawl.js.
+Let's see how we can create a new
+instance for firecrawl. Say something
+like this. So let me just copy this
+example right here and paste it. So see
+new firecrawl. And here we need to
+provide our API key. So I'm just going
+to say process.env firecrawl API key.
+Let's make sure that this is what we've
+written here. Yes, firecraw API key.
+Nice. Now below it I'm going to create a
+server action. So export async function
+script product right and this will take
+a URL right here. Now inside of this is
+where we're going to be writing that
+code like I mean similar to that code
+that firecrawl gave us. So let's have a
+try catch block right here. I'll say con
+result equals await firecrawl dot and
+here you can write scrape right earlier
+it was scrape URL but now it's scrape
+here you can provide the URL that we
+have and then the options so here first
+of all we have to give the format and
+inside this formats you can see we have
+bunch of different options right here
+I'm going to be selecting JSON actually
+this will be an object right here and
+this will be type of JSON right apart
+from this uh we will have our prompt as
+well if you remember that we entered and
+our schema on how we are going to be
+structuring our data right so if I go
+back see right here we have our schema
+and our prompt yes let's copy both of
+these and I'll just paste them right
+here just like this yes we have our type
+schema and our prompt Cool. And actually
+in this required field, I want product
+name and current price to be required.
+Okay. Cool. Now after scraping this, I'm
+going to say con extracted
+data equals result dot I'm going to
+click on JSON because that is what we
+want. Now we're going to check over here
+if this has something. So I'll say if
+extracted data is not present or
+extracted data.product name is not
+there, then I'm going to say no data
+extracted from the URL. And then finally
+after this we're going to say return in
+the catch block we can just say some
+console error fire crawl scrape error
+and throw new error. Cool. And this is
+how it should look like. Nice. Why don't
+we go on and create a server action
+around it so that we can call it while
+we are creating the product inside of
+our database. So over here we have all
+of our actions inside of actions.js.
+Right. So after this sign out we're
+going to create the server action for
+adding the product to our database. So
+I'll say export async function add
+product and we're going to be taking the
+form data from our front end. So from
+the only thing that we're sending over
+here is just the URL. Right? So let's
+extract it. I'm going to say con URL
+equals form data.get URL. After this
+first of all we're going to check if URL
+is even present or not. So I'll say if
+URL is not present then return error URL
+is required. After this, we're going to
+have a try catch block. First of all, we
+obviously need to make the call to our
+database, right? So, let's take the
+superbase client right here for the
+server. So, make sure to import it from
+at superbase. No, actually not here.
+This should be from the server file. So,
+let me just manually import. I think
+it's already imported, right? So, yeah,
+this is exactly what we want. After
+this, let's take the user information.
+So, con data, I'll like dstructure user
+from inside of it. Superbase.get dot get
+user so that we can check if user is
+logged in or not. I'll first check if
+user is not logged in then error not
+authenticated then let's scrape the
+product data with the fire crawl
+function that we have created right so
+I'll say oh wait scrape product let's
+import it right here we we're going to
+provide it with the URL and we're going
+to get all the product data right here
+after this let's again check if the
+product dot product data dotproduct name
+is not present or product data current
+price is not there then console log this
+product data right here okay and return
+the error could not extract product
+information. After this, let's take out
+the price and the currency from here,
+right? To be stored inside of price
+table as well. Sorry, price history
+table. So, I'm going to say new price
+parse float and I'm going to convert
+this current price that which is in
+string format currently to floating
+point number and the currency as well.
+If the no if no currency is provided,
+I'm going to assume it to be USD. All
+right. Now, first of all, if the product
+already exists inside of our database,
+then we're going to simply update it. So
+I'll say const and I'll take the data
+actually rename it to existing product
+equals await superbase dot from and this
+is how you fetch the data from our
+database right so from what's the table
+name products we have created two tables
+right products and price history we can
+be more specific with this query I can
+say dot select what do we want to select
+the ID and the current price then we
+want to make sure that it belongs to
+this particular user So I'll say equals
+do eq user id to be user do ID URL to be
+this URL and we want single item from
+over here if this existing product has
+anything we will keep a flag over here.
+So this will be true if existing product
+has anything then what we going to be
+performing something called as upsert.
+So over here I'm going to say const and
+take the data let's call it product and
+error. Then I'll say await superbase dot
+from this products table and I'm going
+to say upsert. So basically upsert means
+update or insert right. So I'm going to
+be providing all of this data that we
+have gotten from over here like URL and
+the product data after scraping new
+price currency all of these things
+inside of over here. So I'll say this
+object and user first of all the user ID
+who is logged in URL name current price
+currency image URL and updated ad as
+well. Now after this I'm going to say
+instead of an object we are going to be
+adding a unique constraint on user ID
+plus URL over here and I'll say ignore
+duplicates to be false. Right? If it
+exists we can update it. Then we're
+going to fetch this item. So I'll say
+dot select dot single. So we can get all
+of this inside this product right here.
+Now if there's any error so if error
+throw error otherwise we are going to be
+adding it to price history if it's a new
+product or price has changed. So if this
+is update that we took over here if it's
+false that is it's a new product or the
+price is not the same right then we are
+going to be building the price history.
+So I'm going to check if should add
+history is true then I'm going to say
+superbase. History for this table I'm
+going to be inserting this new value
+right here. Okay. After this simply we
+are going to revalidate the path so that
+we can fetch all of this again. So
+import this revalidate and then in the
+end we're going to return success to be
+true the product and the message if it's
+you know latest product. So product
+added successfully otherwise if it's
+updated then updated with latest price
+inside of console right here I'm going
+to simply show the error console error
+and return with this error if there's
+any. Okay. Yeah. Yes, it was quite a lot
+uh of things in this function right
+here. Let me just go on and create more
+server actions right here so that we
+don't need to come back to this file
+like for example delete or getting our
+products getting the price history etc.
+So for delete product I'm going to say
+export async function delete product and
+we're going to provide it with the
+product ID right here. Inside this I'll
+say try catch block. I'll say const
+superbase equals await create client and
+then I'm going to delete this product
+with respect to this product ID. So I'll
+say await superbase dot from products
+table. I'll say dot delete. It should be
+equal to this id of product ID. If
+there's any error, we're going to throw
+the error. else we will just revalidate
+this path inside of this catch and by
+the way after revalidating I'm going to
+return success to be true and inside of
+catch right here let's return error
+error this error message okay after this
+let's get all of the products for that
+particular user so I'll export async
+function get products inside this I'll
+have a try catch block like this and
+this is going to be again very similar
+so let me just write it out real quick
+so again we're going take the superbase
+client I'm going to say await superbase
+from products select star so we want
+everything related to that those
+products right all of the information
+and I'll say order created at ascending
+to be false if there's error throw the
+error otherwise return data otherwise
+empty array in the catch we're going to
+simply throw the same console error and
+return empty array then for a particular
+product we also want to get the price
+history as well right something like
+this so I'll say try catch block and
+Here let me bring in the query. So I'll
+say con superbase await create client.
+So await superbase dot from price
+history select everything. It should be
+equal to this product ID that we have
+right here and in the order of
+ascending. Okay after this same thing
+I'm going to say if there's an error
+return data otherwise an empty array and
+instead of catch as well just like we've
+done earlier. Okay nice. So yeah, we
+have created all of these server actions
+right here and these will help us to
+build our app. Okay, let's uh close this
+up and go back to inside of components
+add product form.jsx.
+Here we can add our product. First of
+all, by the way, uh we have to add the O
+model over here when we're trying to add
+some product, right? So let's just take
+a state for it. So, show O model set
+show O model and simply just like we
+have imported in page.jsx right here.
+So, where is it? No, I think it was in O
+button only, right? So, yes. So, let's
+copy this up instead of add form like
+add product form, we're going to add
+this O model and let's import it. Okay,
+cool. So, this will this will work. Let
+I'll show you how how and when we will
+trigger this, right? So, inside this
+handle submit first of all, we're going
+to prevent the default behavior. So,
+I'll say e.trevent default. And now
+since we have the user information right
+here, we're going to check if user is
+logged in or not. So I'll say if user is
+not logged in, user does not exist. Set
+show O model to be true and return. So
+let's try it out actually over here. So
+let's just sign out the user. I'm going
+to click on track price. Okay, let's
+just enter any random URL. For example,
+this one and click on track price. Yes,
+we can see this model over here. This is
+nice. Then we're going to start the
+loading. I'll say set loading to be
+true. And after this I'm going to build
+my form data. So I'll say const form
+data equals new form data form
+data.append this URL right which we will
+be you know breaking down when we go to
+that server action of add product. So
+I'll say con result equals add product
+that we created. So let's make sure to
+import it and we're going to provide it
+with this form data. After this we're
+going to check if the result dot error
+is true then we're going to show toast
+over here. So we have imported like
+installed this sonner right. So let me
+show you what sonner is actually all
+about. Make sure to import it from
+sonner first. And over here in the
+layout.js
+uh over here below this children we want
+to import something called a toaster
+from add component/ui/soner
+and just say rich colors something like
+this. Let me show you um first what this
+sauner is all about. So in the
+shhatsenian UI docs go all the way over
+here sauner if you click on show toast
+see it will appear something like this
+right and you can choose the direct like
+um alignment over here as well where you
+want to show it something like that so
+if there's any error I'm going to show
+toast dot error else to do success and
+whatever the result message is otherwise
+product tracked successfully and set URL
+to be empty and after this I'm going to
+say set loading to be false in the end
+okay I I think this should work. Uh we
+have done everything. Why don't we go on
+and let's track one of these products.
+How about this one? I'll copy this from
+over here and go to here and click on
+actually let's just click on inspect as
+well. Let's see our network activity.
+Click on track price. Okay, first of all
+obviously we have to login with Google.
+Okay, so we are logged in. Let's paste
+our URL and click on track price. So
+this is adding it. Let's wait. You can
+see it has triggered action.js our add
+product function over here. So nice.
+This is a good news. Let's wait for it
+to extract the data and add it. Okay.
+Looks like this is done. Let's go and
+check. Okay. Yeah. Nice. Inside of our
+products table, we can see the product
+details right here. Awesome. So, it has
+been added inside of our DB as well. You
+can see the name, current price,
+currency, image, URL, everything has
+been added successfully. Great. Now next
+why don't we go on and render this
+product right here on the bottom you can
+see inside of our deployed app we have
+we are rendering them over here right so
+we are going to be rendering them our
+products over here so first of all I'm
+going to go to my page jsx right here
+the homepage and here we took this empty
+array for our products right so instead
+of this now I'm going to first of all
+check if user is logged in then I'm
+going to say await get product so this
+server action that we created we going
+to be importing that otherwise we're
+going to be taking it as an empty array
+right now we can take this products
+right here and you can see we were
+rendering this thing over here according
+to if we have any product over here or
+not so I think right now yes this should
+not be visible and now we can render our
+products right below this over here so
+below this section I'm going to be
+having another section over here and for
+this one I'm going to be wrapping this
+up and I'll say if user user is logged
+in and products dolength is more than
+zero only then we will render this
+section. Okay. Okay. So inside of this
+now first of all let's just give this
+section some class name of max weight to
+be 7 XL MX auto so that everything is in
+the very middle some horizontal and
+vertical padding. Inside of this I'm
+going to be having a div where I'm going
+to be having an H3 which will say your
+tracked products. Below this H3 I'm
+going to be having a span tag which will
+show how many products we have. So
+products.length and if products.length
+length is one then I'll just say let's
+say one product or if it's more than one
+then I'll say two products but text
+small and text gray to be 500 let's see
+yep something like this let me just
+style this a little bit so I'll say
+class name to be display flex items to
+be center justify to be between oops and
+margin bottom to be six for this h3 I'll
+say class name to be text to excel some
+font bold text gray to be 900 so now we
+can see this will be bigger yeah
+something like this And this is in the
+very right side. Okay, cool. Let me just
+make this full screen first of all.
+Okay, now below this is where we're
+going to be rendering our products. So
+below this div over here, I'm going to
+be having another div. And this one will
+have class name of grid gap of six in
+the medium screens grid columns to items
+to be start. Now inside of it is where
+we're going to be rendering our product.
+So I'll say products dot map and I'll
+take each and every product and I'm
+going to be rendering it inside of a
+product card component. Right? Obviously
+this does not exist yet. We will be
+creating it. So let's just provide it
+with the key first. So key is going to
+be product dot id. Right? And also we'll
+pro provide it with the actual product.
+So product. Okay. Let's create this
+product card now. So inside of our
+components, I'll create a new file
+product card dot jsx r a fce and let's
+take the actual product over here in the
+props. Right? Let's just import it right
+here and we will check if this is
+working fine or not. So it should be
+rendered in a grid. There you go.
+Something like this. We just have one
+product. So that's why it has rendered
+product card once. Okay, cool. Now over
+here inside of this product card, we're
+going to be taking a couple of states.
+First of all, let's just make it a
+client component. So I'll say use client
+since we're going to be having hooks
+over here. So we're going to be having
+two use states. First one for showing or
+hiding the chart and second one for
+deleting our product. Right? So
+basically a loading indicator when it's
+deleting. So show chart set show chart
+by default it's going to be false.
+Deleting set deleting by default false.
+Let's create the function for deletion.
+So const handle delete equals async
+inside this function. I'll first of all
+uh prompt user if they want to confirm
+deletion or not. So I'll say if remove
+this product from tracking if user said
+yes then we'll move forward otherwise
+we're going to return it. If the user
+said yes I'm going to say set deleting
+to be true. Await delete product to
+product ID. Let's import this delete
+product right here and see let's see
+what this is returning. It's going to
+return success. Okay so it's actually
+going to be similar to the insertion
+right. So where was it? add product
+form. So something like this. I'm going
+to copy this whole thing up. Go to
+product card and I'll paste it right
+here. I'll just store it inside of
+result con result this result dot error.
+Then we're going to show the toast with
+the error. Otherwise success product
+deleted successfully. And over here set
+deleting is going to be false. Okay,
+nice. Now why don't we go on and create
+this product card. So for this we're
+going to be using a card component.
+What's wrong? Use state is not defined.
+Okay, let's import use state. Yep, now
+it's fine. So, let's go to chat UI and
+over here I'm going to be using the card
+component. This card component right
+here. Right. So, see where is it? Yes,
+over here. So, this is how our card
+component is going to look like. So,
+I'll just copy it up and paste it right
+over here. Let's get rid of the card
+title and description. Make sure to
+import everything else over here. card
+from make sure to import from dot / UI
+only. Card content card footer. Let's
+see if it's appearing. Yes, it is
+appearing over here. Now, first of all,
+for our card, let's just give it some
+class name. So, I'm going to say on
+hover, we're going to show the shadow
+transition shadow. Card header, I'll say
+class name to be padding bottom of
+three. Inside of this, I'm going to be
+having a div right here. Fit flex and
+gap to be four. Now first of all we're
+going to render the product image over
+here. So I'll say if product dot image
+URL is there then I'm going to have this
+image tag src product dot image URL. And
+by the way you can use image tag from
+next/ image over here as well or you can
+also just keep it as default image tag.
+In the next JS image tag obviously you
+will need to provide the resolution of
+width and height as well. Okay. So width
+20, height 20, object cover rounded MD
+border. Let's see if it's visible. Yes,
+it is visible. After this, we're going
+to be rendering the product name and
+all. So after this, I'm going to be
+having a div. Inside of this div, I'm
+going to be having an H3 with product
+dot name font semi bold text 900 line
+clamp 2 and margin bottom to be two. And
+below this H3, I'm going to be having
+another div with display flex item
+baseline gap to be two. And inside of it
+we will just show product currency and
+the current price. So with the span tag
+I'll say text to be 3 XL font bold and
+text color to be orange 500 with
+product.urren currency and product
+current like this is straightforward
+guys. And after this we're going to be
+rendering a badge component from chat
+scen UI which will be for showing that
+we are tracking it right. So uh oops
+badge component and this can also have
+some variants. Oops not from lucid
+react. Make sure to import from dot / ui
+var secondary class name gap to v1.
+We'll have a trending down icon over
+here and we're going to say tracking.
+Let's check it out. Yep. See something
+like this. Awesome. Now below it we can
+show over here you know show chart hide
+chart button or view product button. So
+over here in the card content I'm going
+to be having a div right here like this.
+inside this do first of all the button
+that we'll have is to show and hide the
+chart. So I'll say button make sure to
+import it from dot / ui and here
+according to this uh this show chart
+state we'll be showing the content
+inside of it. So I'm going to say if
+show chart is true then we'll show a
+chevron up icon from lucid react and say
+hide chart. Otherwise we're going to say
+chevron down icon and say show chart.
+Let's see. Yes, if I click on it, so
+obviously nothing's going to happen
+because we are not changing it. So over
+here in the button, I'm going to say
+variant outline size is going to be
+small. On click, I'll say set show and
+reverse it. So not show chart and class
+name gap to be one. Now you'll notice
+yes, now we are switching it. Below it,
+we will be having a button to view the
+product. So below this button, I'll say
+another button variant outline size
+small as child class name gap to be one.
+And here I'm going to be showing a link
+from next slash link right which will
+take us to the external link of the
+product to the actual website from like
+where the product exists right. So I'll
+click on external link over here. This
+will be an icon hf product url simply
+target blank so that it opens in another
+tab. So let's check it out. Yes. If I
+click on this see it takes us to the
+actual website right here. Awesome.
+Let's turn it off. After this button,
+we're going to have button for deleting
+the product. So variant ghost size small
+on click. I'm going to trigger the
+handle delete function that we have
+created. It will be disabled when it's
+deleting class name text red on hover
+text 700 background 50 and gap to be
+one. And we're going to show this trash
+to icon from lucid react and remove. So
+see something like this. We click on it.
+It will ask you for confirmation. I'm
+just going to cancel it. I don't want to
+delet it right now. Right. And now if we
+are showing the chart over here then
+according to that we will show this card
+footer. So I'll say if show chart is
+true then show card footer. So if I
+click on it yes something like this.
+This is cool. Let's just say class name
+padding top to be zero. Now over here
+we're going to be creating the price
+oops price chart component something
+like this and we will provide it with
+the product id which will be product dot
+id let's create this component this does
+not exist I'm going to click on new file
+right here price chart jsx r a fce price
+chart now over here for displaying the
+charts we're going to be using a library
+called recharts and also we are going to
+be fetching all of the historical data
+for that particular product. So over
+here we're going to be taking two
+states. First of all for storing the
+data and second for loading when we are
+fetching it. So let's make this a client
+component. Use client and we have
+already created the action for this. So
+get price history. This is what you are
+going to be fetching inside of this
+component right here. So let me just
+import it. Yeah, inside of over here.
+Let's see how rechart works after we
+have fetched the data. So let me just
+say three charts on Google. This is the
+library and we are actually going to be
+rendering a simple line chart over here.
+So if I show you I think see something
+like this where we can see the actual
+pricing. So in recharts it provides you
+with a bunch of different different
+charts over here and obviously it's a
+freeto use library. So what I want you
+to do this is an assignment for you
+guys. I want to go I want you to go
+through this library and figure out how
+you can render this data over here. If
+you are able to do this, great. If
+you're not able to do this, just go to
+my git repository. Inside of components,
+we have this price chart.js component
+right here as a solution. Right? Don't
+view it first. First, try to build it
+yourself. Only then you will learn
+instead of just blindly following.
+Right? So, this is an assignment for
+you. Just finish it yourself first and
+I'm going to skip this part of building
+it. Right? If you are not able to build
+it, obviously you can also provide this
+code to chart GPT or claude and ask it
+for explanation. Make sure to import
+this recharts library first. Okay, let's
+move forward. All right, there we go. I
+have written this code right here. Now,
+what I was thinking is why don't we go
+on and commit our code up until now
+because later on we will have to deploy
+our app as well, right? So, I'll just
+open GitHub and click on this plus icon.
+Click on new repository. Repository name
+can be deal drop. Click on create
+repository. And right here, let's commit
+our code. So I'm just going to go back
+right here and I'll click on terminal
+get init to initialize a new git
+repository and we would need to add
+remote origin. First of all let's just
+say get add dot getit commit dash m and
+provide commit message. Let's say basic
+functionalities.
+Press enter. We will add the origin, the
+line that we copied. And I'll say get
+push origin master and press enter.
+There we go. Something like this. All
+right. There we go. This is pushed.
+Great. Now, if we see inside of our app,
+see, it shows us loading chart. And
+obviously, we have not added any price
+history yet. So, it will not show us any
+chart. Why don't we go on and manually
+add some, you know, price history for
+this. Like over here in the price
+history, we can probably say insert
+insert row. Keep the ID as empty. Let's
+select some product ID. Let's say this
+product price. I think currently it's
+8,550, right? Let's just choose 8,000.
+Currency can be INR if I'm not wrong.
+Yes, INR checked at. We can just choose
+any previous date over here. Save it.
+Let's add one more time. Insert row.
+Product ID to be this. Price, let's say
+8 700. currency INR at 8th and save it.
+Okay, so we have two entries over here.
+Obviously, we won't be adding manually
+over here, right? Later on, we will be
+creating a chron job for it. So, now if
+you notice, if we click on show chart,
+okay, nice. We have two entries over
+here. So, this is how it's going to look
+like. Awesome. Now, let's move forward
+and finally implement our alerts, right?
+So that every day at a certain time,
+let's for example 9:00 a.m., it's going
+to check the price. Or maybe if you want
+to check price every 1 hour, it can do
+that as well, right? And when it notices
+that price has gone down, it will send
+you the alert over the email. Cool. So
+let's um let's start working on it. So
+first of all, I'm going to be creating
+the endpoint for it. And then I'll go on
+and set up our chron job. Okay. So here
+in the app folder, we are going to be
+creating a new folder for our APIs. And
+we will keep this public so that our
+chron job inside of superbase can access
+this endpoint. And how do you create an
+endpoint first of all? So let me just uh
+show you. So if I create new folder over
+here for chron inside of this I'm going
+to be creating another folder. Let's
+call this API check price or prices. And
+then we have to create a route file. So
+route.js.
+Okay. Now let me just demonstrate how
+you can create a simple endpoint. So you
+just have to say export async function
+get. So this will be a get call.
+Similarly you can put post over here
+which we will do for our main endpoint
+and over here we can say return next
+response. So basically this is how we
+are responding. If you wanted you could
+have done next request as well if you
+wanted some data from the server which
+I'll show you how you can do that as
+well. And I'll say dot JSON. We will
+return it in the JSON format. And in the
+object you can return whatever you want.
+Let's say a message price checkpoint
+endpoint is sorry price check endpoint
+is working. Cool. Um why don't we go on
+and check it out. So I'll say / API
+slash I think it was chron and check
+prices with a dash in between and press
+enter. Yeah, check this out. It shows us
+this message price check endpoint is
+working. Cool. Then uh let's just go on
+and write our post endpoint. Then copy
+and duplicate it. I'll just say post in
+place of it. And this will be basically
+taking some request over here which will
+be like our chron secret. So chron
+secret is basically a secret code for
+accessing this function right here that
+will be triggered by our chron job. So
+let's generate such uh secret over here.
+All you have to do you have to say node-
+e and here I'll say in double quotes
+console dot log inside of it you will
+say require a library called in single
+quotes crypto and I'll say dot random
+bytes inside of this it will be 32 I'll
+say dot to string and I'll say hex so
+basically this will help us generate a
+complex and secure string right here see
+something like this. Let's copy it up.
+Go to env. And here we can create a new
+environment variable called chron
+secret. And we can paste this right
+here. Cool. This is what we'll be using
+it. And this is what we'll be providing
+to superbase as well to trigger our
+route right here. So let's put it inside
+of try catch block. Close this. First of
+all, I want to get the chron secret
+right that this request is sending us.
+First of all, I'll say o header. We're
+going to take all the details inside of
+this request. So request.heathers.get
+authorization inside of this is where
+we'll be sending the chron secret and
+we'll be taking our chron secret that we
+have added right here to compare from
+it. Then I'll check if first of all if
+no chron secret or if o header is not
+equals to bearer chron secret. So this
+is how you basically trigger an API call
+for authorization if you have worked
+with something like this before. So let
+me show you actually uh let me just
+paste it right here and comment it out.
+So here is how basically you're going to
+be triggering it. Inside of the header
+you're going to say authorization and
+bearer and your token right here which
+is our chron secret. And this will be
+our versel URL. Obviously in my case
+it's the drop, right? Something like
+this. You can call this something else
+if you like. Okay. So inside of this if
+statement if it's not there I'm going to
+simply return next response. Make sure
+to import it. JSON error unauthorized
+and status 401 that is a front- end
+error. Right? Then you might remember
+that we added this service role key
+right here. So basically this key is
+very crucial and you should not share it
+with anyone. Right? So basically this
+key allows us to bypass the role
+security of our tables. So let me show
+you. I'll say create client and
+obviously import it from server. No
+actually not server. This will be
+imported from directly from add
+superbase. superbase/s superbase-js.
+We're going to take the next public
+superbase URL and superbase service role
+key over here. So we can bypass our role
+level security. Okay. Now we can input
+over like we can fetch whatever that we
+want. So I'm going to say await
+superbase from products table and we'll
+get every single product right to check
+the prices for it. Const data let's
+rename it to product and if there's any
+error we're going to call it products
+error. Okay. If there's any products
+error then we're going to show it by
+throwing product error right otherwise
+we can just simply console look these
+many products to check. So this is for
+internally for the server right let's uh
+populate an object over here called
+results with total products updated
+failed so that we can just show it
+inside of our console right price
+changes alert sent this just for us for
+debugging. Now we can loop through all
+of these products right here. for
+consroduct of products and inside of it
+I'll have a try catch block inside this
+try catch block we will scrape the
+information of each and every product
+using our scrape function so this scrape
+product function that we have created
+earlier make sure to import it we will
+provide it with the product URL and get
+the data inside of it right it's going
+to be very similar to what we have
+already done if the data is not present
+then we're going to say results dot and
+we're going to increment the failed key
+right here. how many failed to scrape
+right and then after this I'm going to
+say new price and whatever the new price
+is from the scraped data and the old
+price that we have from product dot
+current price right and convert it into
+float obviously then finally we can
+update it inside of our database so I'll
+say await superbase from products and
+I'll say dot update update current price
+currency if there's any updation name
+image URL and when it was updated and
+we're going to equal it to the product
+ID ID. So I'll say dot equal to ID to be
+product do ID. Okay. Now we will only
+add it to our price history table if the
+price has changed. So I'll say if old
+price is not equal to new price right
+here. Then what I'll do? I'll just
+insert it inside of my price history
+table. Superbase dot from price history
+and I'll say dotinsert product ID, price
+and currency. So we manually inserted it
+inside of our UI, right? But now we can
+insert it through code right here. Okay.
+Then I'll say results dot price changes
+plus+. We can you know increment this
+one. Again this these are all just for
+our debugging to check if price has
+changed or not. Now I'm going to check
+if new price is less than old price. Now
+in this case we are going to send alert
+to the user. So let's fetch first of all
+who is the user. So I'm going to say
+const data
+restructure user from it. I'll say oh
+wait superbase.admin.
+So this is only accessible if you're
+using you know something like uh superb
+service role key right. So admin dot get
+user ID I'll get the user ID and from
+this user right here is where we are
+going to be taking out the user's email.
+So if user dot email is there let me
+just use optional chaining over here. If
+it is there we are going to be sending
+the email over here. So send email. We
+will be writing the logic for it over
+here very soon. And after this I'll
+simply say results do.updated ++. That's
+all. In the catch block right here I'll
+say console.error error processing
+product for that particular product and
+results dotfailed ++. Okay after all of
+this is done let's see. So it was right
+here in this for loop right we are
+populating this results right here. We
+can just provide it with some response
+here as well. After this I'm going to
+say return next.response do.json JSON
+success true message to be this and the
+results right and finally in the catch
+over here I'm going to say console error
+chron job error and we can respond with
+the error right status 500 that is a
+server error okay yeah I think uh that
+was it for this one uh let's go on and
+write the logic for sending the email
+and for sending our email actually we
+are going to be using a service called
+as resend I've used it in some of my
+previous videos as well so just go to
+resend And right here, click on over
+here, recent. Let's log in and create
+our new account. I'm going to log in
+with Google. There we go. We are in. And
+over here, go to API keys and create an
+API key. So, let's name it uh deal drop
+and click on add right here. There we
+go. We got this API key. Just copy it
+up. And since we are on free plan, this
+will send us the email from our from
+their default email basically. So, let
+me show you what you need to do over
+here. First of all say resend email
+sorry resend API key equals this and the
+mail that we will receive will be from
+over here onboarding atresend.dev. So
+this is basically for development and
+testing and for free accounts. Obviously
+if you want to add your own domain
+probably you can go on and add it right
+here. But since this is our personal
+project it's fine with us. That is all
+we need to do over here. Let me show you
+actually how our email will look like.
+So uh for example this is my test email
+that I was sending and this is the email
+that we will be sending to our user.
+Let's just go on and create this
+template first. So let's close it and
+inside of lib over here just go on and
+create a new file email.js JS and here
+we're going to create a function email
+async function send price drop alert
+inside of this params I'm going to take
+four things user email product old price
+and new price and this will return us
+true or false accordingly right so we're
+going to take this and we'll use it over
+here in send email part that we have
+commented out so here simply I'll say
+const email result equals await send
+price drop alert make sure to import it
+over here and we'll send the user email
+product old price new price according to
+the email result I'll check if email
+result do success is true then results
+do alert send++ that's all let's go on
+and build this now so over here first of
+all we need to initialize the resend so
+let's install recent first I'm going to
+say npm install resend and press enter
+there we go it is installed now over
+here I'm going to say const recent
+equals new resend import it from recent
+send right here and say process env dot
+and let's take our resend API key from
+over here and paste it right here. Cool.
+Now we can use it to send emails. So
+inside of it I'll have a try catch block
+and here we will compare the price drop
+and prepare our data basically. So I'll
+say con price drop equals old price
+minus new price and how much percentage
+drop. So price drop divided by old price
+into 100 we will get the percentage.
+After this I'll say const equals await
+resend dot emails dot send and this is
+where we'll be sending our email. So we
+will basically be getting the data and
+error right instead of send over here
+we're going to be having an object. So
+I'll say from from can simply be u
+process env
+what did we take over there it was
+recend from email right. So this thing
+two is going to be the user's email. So
+user email then we can show the subject
+to the user. So send the subject. So
+price drop alert with the product name
+and then the our email. So I'll just
+keep it empty for now. After this after
+this is done, we're going to check if
+there's any error. So show console error
+and return error. Otherwise we're going
+to return success to be true and data
+right here. Right? And in the catch
+simply we're going to show the error. So
+console error and return error to be
+error dossage. All right. Now what about
+this HTML? So I showed you that email
+that we have created, right? So
+according to you, you can build your
+HTML right here or what you can do, you
+can just go to my GitHub repository.
+It's a long code. Let me just copy and
+paste it first so that I can explain
+you. But it's simple enough. So just go
+to lib. Oh, sorry. This was our code,
+right? So this was the deployed code. So
+email.js and just copy this HTML all the
+way to here. Copy and paste it right
+here. Okay, let's see what uh this is
+all about. So this is basically a simple
+HTML file. Doc type HTML HTML and head.
+If you want you can just run it
+somewhere. So again as I was showing you
+over here, see if you click on HTML,
+this is the code that we have created.
+Probably this is too long. Maybe you can
+simplify it as well. Just show the basic
+stuff whatever that you want to show
+over here. Right? Something like this
+with the meta tags and all body inside
+this. The only thing that we need to
+worry about is this product image that
+we're showing in this image tag right
+here and the product name, percentage
+drop, product currency with the old
+price, product currency with a new price
+to fix. I'm pretty sure if you're
+watching this tutorial, you know how
+HTML works, right? So again, you can
+make changes to this template according
+to yourself. Cool. Then so yeah, that's
+uh our price drop alert. Should we go on
+and try it out? What do you guys say?
+But the first thing that we need to do
+over here, we need to hit this end
+point, right? And to hit this end point,
+we'll need to deploy our app as well,
+right? So let's just why don't we go on
+and deploy this to Versel. Uh let's make
+the changes. Let's commit the changes
+over here. Add email alerts. Commit
+publish branch. Okay, there we go. Let's
+go to Versell now and click on add new
+over here and click on project. And here
+I'm going to click on this deal
+repository. Make sure your GitHub is
+connected. Framework is obviously
+Nex.js. That's fine. build and output
+settings. We're going to keep it as it
+is. Environment variables. Let's add our
+environment variables over here. So,
+I'll go to env. I'll just copy all of
+these and paste it right here. Something
+like this. See, all of our environment
+variables are here and click on deploy.
+Let's see if this works. Over here, you
+can see the build logs to see if there's
+any error while uh deploying it. So,
+it's creating an optimized production
+build. This is good sign. There we go.
+It is deployed. Amazing. Let's continue
+to dashboard and let's set our um domain
+for this first, right? I'm pretty sure
+they would have set some weird domain.
+Let's click on domains over here. You
+can see let's click on edit. I'll say
+get deal drop. Something like this,
+right? And let's click on save. Remove
+old domain. Okay, there we go. Let's
+check this out. Okay, our app is
+working. Now one thing that we need to
+change over here inside of superbase go
+to authentication and URL configuration.
+And here in URL configuration you need
+to change this local host to this new
+get deal. I think let me just copy it
+properly and paste it with the https and
+everything. Okay. Save changes. So this
+will make sure our login is working
+correctly. Let me just sign in first.
+Continue with Google. There we go. I am
+logged in. Great. This is also working I
+guess. Yes, everything is working fine.
+Let's just take this link right here.
+I'll copy it up. I'll go back to this
+route.js and I'll replace it over here.
+And for our chron secret, let's just add
+this chron secret over here. And let's
+hit this endpoint. Right, I'm going to
+uncomment it. I'll just copy it up and
+then comment it again. So, let me just
+open PowerShell over here and hit this
+endpoint. So, there we go. Go back and
+paste this right here. test anyway and
+oh wait what's wrong okay let me just
+put it in one single line actually the
+slash again let me just copy it from up
+until here let me paste it and check it
+out I think we need to say something
+like uh I think this will work in Mac
+but for Windows I think called exe let's
+check it out I think this should work
+yeah something is happening okay what do
+we have total one updated one failed
+zero price changes zero okay let's let's
+see uh if this is added inside of are DB
+or not. I'll go to table editor price
+history. No, probably because the price
+didn't change, right? That's why. Let me
+do one thing over here in the products.
+I'll change the price to something like
+five 8650,
+right? Let's try it again now. So, I'll
+use the same thing and hit it. Okay,
+there we go. We got something over here.
+Price check completed. Result total one
+updated one. Price changes one. Okay,
+let's go over here and uh refresh this
+price history. Okay, nothing seemed to
+have happened over here. I think
+something definitely went wrong. It did
+not fail. Alerts sent zero. You know
+what? Uh why don't we just use it inside
+of our local host first? Maybe it will
+work. So, I'll just say http local host
+col 3000 should be http I guess. And
+press enter. Let's see if it works
+inside of our local host or not. I think
+if there's any error, we will get it
+right here in real time. See, it's
+showing us here. Found one products to
+check. And it hit this price changes
+one. Alert sent. Yes, alert sent one.
+Okay, I think now it would have added it
+right here. Yes, this was added. I don't
+know why it didn't work with the versel
+URL. Probably something went wrong.
+Let's go first check inside of our app
+right here. Yes, we can see it updated.
+Let's go and check my email. And yes, I
+have gotten this email right here that
+the price got dropped by 100 rupees.
+Let's try it again with the versel URL.
+Probably something went wrong with it.
+Let me just update this pricing again.
+8750
+probably. Okay, let's try it out again
+with the versel URL. So with get
+deal.verell.app.
+Let's make sure that this is working.
+I'm going to click on it first. It is
+working. So it should not be an issue
+with this one. Let's enter it. Let me
+just actually check one thing over here
+in Verscell. If you go to settings,
+there's this deployment protection over
+here. Right? I think this could be an
+issue. So, I'll just disable this.
+Probably this is what's stopping us to
+hit this URL. Right. Let me just stop it
+again and just try to hit it again.
+Press enter. Now, this should probably
+work. There we go. Total one updated one
+failed zero price changes one alert sent
+one. Let me check my email first. Yes,
+you can see I got another email right
+here. Let's go check our database for
+price history. Yes, we have another
+entry. Amazing. And inside of our app as
+well, probably we would have gotten the
+updated chart. Amazing. This is cool.
+So, our endpoint is working flawlessly.
+Now, the only thing that we need to do
+is to configure the chron job over here
+so that this gets triggered every day at
+9:00 a.m. or whatever that you want.
+Right? So for adding a custom cron job
+inside of superbase, we will go to our
+SQL editor and you can write custom SQL
+over here. But they have integrations
+over here for adding custom postgra
+functions like cron. So click on it and
+click on enable pgron over here. So
+extensions enable extension. There we
+go. It is enabled. In the jobs you can
+click on create job over here and name
+it. Let's say trigger price check. And
+here we can add schedule, right? how
+often it will get triggered like they
+have given multiple different examples
+right here right like every Monday at 2
+a.m. So if you want to understand crown
+probably just ask chat GPD it will tell
+you exactly what these things mean so
+every one of these stars have a certain
+meaning like for example days
+month etc right but superbase makes it
+super easy let's say if I'm going to say
+every day 9 a.m. Right. So now it will
+generate an expression for me based on
+that. See something like this. This is
+what we want. So we can just copy and
+like if you want you can just leave it
+over there or something like this 09 and
+star star. Then over here after this you
+can select if you want to run a SQL
+snippet at that time database function
+or if you want to run HTTP request which
+we want to do. I'm going to say install
+pgnet extension first. So yeah enable
+extension. Click on http request. method
+will be post obviously end point. So let
+me just choose our end point which was
+this. I'm going to copy it up and paste
+it right here. Time out. Uh I'm going to
+remove this timeout over here probably.
+Let's keep it somewhere around 20 20
+seconds, right? Because there might be a
+lot of products over here. Let's add a
+new header. It will be called
+authorization and header value is going
+to be bearer. And then the token. So
+token is right here. this one. Paste it
+over here. If you want to add a new
+header, something like content type,
+I'll say application/json.
+We're not going to be needing the body.
+And um yeah, I think that should be it.
+Let's click on create chron number must
+be less than 5,000. Okay. Well, let's
+put 5,000 over here, I guess. Then
+create chron job. There you go. It has
+been created. Amazing. Should we try and
+trigger it out? Let's just first change
+the price over here for our products.
+You know what? Let's just do everything
+from the beginning. Let's go on uh first
+of all to our deployed app right here.
+Let me just add a new product. Right?
+So, why don't just go on this Zara
+website only. Let's choose some other
+product over here. Let's say this one,
+right? Let me just copy it and paste it
+inside of our app. Click on track price.
+It is adding it. It would be scraping
+the data. Okay. Okay, we're getting some
+error over here. Let me check. Wait,
+I'll just click on add again. I think
+there was some error while adding it.
+Oh, no, it's fine. So, yeah, it's
+working. See, it has added right here.
+Now, what I'll do, I'll go to like
+superbase and here, let's change the
+price of this product to something more
+550
+something like this, right? And now, uh,
+let's go on and trigger our chron job
+manually. So obviously uh chron jobs are
+going to be triggered every day at 9:00
+a.m. but we can also trigger them
+manually from right here. So go over
+here and run command. So it has been
+triggered. Let's see what happens. And
+if you want to see if it's been working.
+Wait, it has not run yet. Wait, let me
+just try to run it again. Command from
+uh this ran successfully. Okay, let's
+click on over here and click on view
+chron logs. Doesn't seem like it ran.
+Probably we missed something over here
+probably. Or maybe it will just run in
+the next cycle 11 December something.
+Well, I guess we just have to wait up
+until next day to find out if it's
+working or not. But it should work for
+sure because we already tested it inside
+of our console. And yeah, with that we
+have successfully created our price
+tracker app. If you like this video, hit
+that like button as hard as you can. And
+now next step for you is to prepare for
+those front- end interviews. So check
+out my front end interview preparation
+course from the link in description down
+below and use this coupon code on the
+screen for the maximum discount. Oh, by
+the way, I just got the delivery for
+this jacket. So price tracker worked.

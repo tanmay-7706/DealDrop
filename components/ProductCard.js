@@ -20,7 +20,21 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export default function ProductCard({ product }) {
+function getStoreName(url) {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase();
+    if (hostname.includes("amazon")) return "Amazon";
+    if (hostname.includes("flipkart")) return "Flipkart";
+    if (hostname.includes("myntra")) return "Myntra";
+    if (hostname.includes("zara")) return "Zara";
+    const parts = hostname.replace("www.", "").split(".");
+    return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+  } catch (e) {
+    return "Store";
+  }
+}
+
+export default function ProductCard({ product, isPublic = false }) {
   const [showChart, setShowChart] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -30,6 +44,8 @@ export default function ProductCard({ product }) {
     setDeleting(true);
     await deleteProduct(product.id);
   };
+  
+  const storeName = getStoreName(product.url);
 
   return (
     <Card className="hover:shadow-lg transition-shadow">
@@ -53,10 +69,15 @@ export default function ProductCard({ product }) {
               <span className="text-3xl font-bold text-orange-500">
                 {product.currency} {product.current_price}
               </span>
-              <Badge variant="secondary" className="gap-1">
-                <TrendingDown className="w-3 h-3" />
-                Tracking
-              </Badge>
+              <div className="flex gap-1 ml-auto md:ml-2">
+                <Badge variant="secondary" className="gap-1 bg-gray-100">
+                  {storeName}
+                </Badge>
+                <Badge variant="secondary" className="gap-1 text-orange-600 bg-orange-50">
+                  <TrendingDown className="w-3 h-3" />
+                  Tracking
+                </Badge>
+              </div>
             </div>
           </div>
         </div>
@@ -90,16 +111,18 @@ export default function ProductCard({ product }) {
             </Link>
           </Button>
 
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleDelete}
-            disabled={deleting}
-            className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-1"
-          >
-            <Trash2 className="w-4 h-4" />
-            Remove
-          </Button>
+          {!isPublic && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleDelete}
+              disabled={deleting}
+              className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-1"
+            >
+              <Trash2 className="w-4 h-4" />
+              Remove
+            </Button>
+          )}
         </div>
       </CardContent>
 
