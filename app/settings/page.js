@@ -116,7 +116,7 @@ export default function SettingsPage() {
                   onChange={(e) => setSettings({ ...settings, discord_webhook_url: e.target.value })}
                 />
                 <p className="text-xs text-gray-500 mt-2">
-                  To get a webhook URL, go to your Discord Server Settings > Integrations > Webhooks > New Webhook.
+                  To get a webhook URL, go to your Discord Server Settings &gt; Integrations &gt; Webhooks &gt; New Webhook.
                 </p>
               </div>
             </div>

@@ -182,7 +182,7 @@ export async function getTrendingProducts() {
           currency: "USD",
           image_url: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1694014871985",
           created_at: new Date().toISOString(),
-          isPublic: true // mock flag
+          isPublic: true
         },
         {
           id: "mock-2",
@@ -201,6 +201,36 @@ export async function getTrendingProducts() {
           current_price: 599.99,
           currency: "USD",
           image_url: "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/primary/395386-01.png?$responsive$&fmt=png-alpha&cropPathE=desktop&fit=stretch,1&wid=1920",
+          created_at: new Date().toISOString(),
+          isPublic: true
+        },
+        {
+          id: "mock-4",
+          name: "Levi's Men's 501 Original Fit Jeans",
+          url: "https://www.levi.com/US/en_US/apparel/clothing/bottoms/501-original-fit-mens-jeans/p/005010193",
+          current_price: 79.50,
+          currency: "USD",
+          image_url: "https://lsco.scene7.com/is/image/lsco/005010193-front-pdp-ld?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=2000&hei=1840",
+          created_at: new Date().toISOString(),
+          isPublic: true
+        },
+        {
+          id: "mock-5",
+          name: "Sony PlayStation 5 Console",
+          url: "https://direct.playstation.com/en-us/consoles/console/playstation5-console.3006646",
+          current_price: 499.99,
+          currency: "USD",
+          image_url: "https://media.direct.playstation.com/is/image/sierialto/PS5-front-with-dualsense-5?$Background_Large$",
+          created_at: new Date().toISOString(),
+          isPublic: true
+        },
+        {
+          id: "mock-6",
+          name: "Nike Air Force 1 '07",
+          url: "https://www.nike.com/t/air-force-1-07-mens-shoes-jBrhbr/CW2288-111",
+          current_price: 115.00,
+          currency: "USD",
+          image_url: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b7d9211c-26e7-431a-ac24-b0540fb3c00f/air-force-1-07-mens-shoes-jBrhbr.png",
           created_at: new Date().toISOString(),
           isPublic: true
         }
