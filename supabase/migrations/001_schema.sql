@@ -5,7 +5,7 @@ CREATE TABLE products (
   url TEXT NOT NULL,
   name TEXT NOT NULL,
   current_price NUMERIC,
-  currency TEXT DEFAULT 'USD',
+  currency TEXT DEFAULT 'INR',
   image_url TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW(),
@@ -33,7 +33,7 @@ CREATE TABLE price_history (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   product_id UUID REFERENCES products(id) ON DELETE CASCADE,
   price NUMERIC NOT NULL,
-  currency TEXT DEFAULT 'USD',
+  currency TEXT DEFAULT 'INR',
   checked_at TIMESTAMPTZ DEFAULT NOW()
 );
 
