@@ -66,44 +66,16 @@ export async function addProduct(formData) {
 
     if (error) throw error;
 
-    // Add to price history if it's an update and price changed
-    if (isUpdate && existingProduct.current_price !== newPrice) {
+    // Add to price history if it's a new product OR price changed
+    const shouldAddHistory =
+      !isUpdate || existingProduct.current_price !== newPrice;
+
+    if (shouldAddHistory) {
       await supabase.from("price_history").insert({
         product_id: product.id,
         price: newPrice,
         currency: currency,
       });
-    } 
-    // If it's a new product, generate dummy historical data for a better chart
-    else if (!isUpdate) {
-      const historyToInsert = [];
-      
-      // Generate 7 days of fake past data
-      for (let i = 7; i >= 1; i--) {
-        const pastDate = new Date();
-        pastDate.setDate(pastDate.getDate() - i);
-        
-        // Randomize price between -5% and +15% of current price to make a realistic looking chart
-        const randomFactor = 1 + (Math.random() * 0.2 - 0.05); 
-        const fakePrice = parseFloat((newPrice * randomFactor).toFixed(2));
-        
-        historyToInsert.push({
-          product_id: product.id,
-          price: fakePrice,
-          currency: currency,
-          checked_at: pastDate.toISOString()
-        });
-      }
-      
-      // Add the current real price for today
-      historyToInsert.push({
-        product_id: product.id,
-        price: newPrice,
-        currency: currency,
-        checked_at: new Date().toISOString()
-      });
-      
-      await supabase.from("price_history").insert(historyToInsert);
     }
 
     revalidatePath("/");
@@ -158,7 +130,7 @@ export async function getPriceHistory(productId) {
     const supabase = await createClient();
     const { data, error } = await supabase
       .from("price_history")
-      .select("*")
+      .select("*, currency")
       .eq("product_id", productId)
       .order("checked_at", { ascending: true });
 

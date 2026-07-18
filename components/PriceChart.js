@@ -57,25 +57,27 @@ export default function PriceChart({ productId }) {
   const currentPrice = prices[prices.length - 1];
   
   const isGoodDeal = currentPrice <= avgPrice && currentPrice <= minPrice * 1.05;
+  const currencyCode = data[0]?.currency;
+  const currencySymbol = currencyCode === 'USD' ? '$' : currencyCode === 'INR' ? '₹' : currencyCode === 'EUR' ? '€' : currencyCode === 'GBP' ? '£' : currencyCode || '₹';
 
   return (
     <div className="w-full space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Current Price</div>
-          <div className="text-lg font-bold text-gray-900">₹{currentPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-gray-900">{currencySymbol}{currentPrice.toFixed(2)}</div>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Lowest Price</div>
-          <div className="text-lg font-bold text-green-600">₹{minPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-green-600">{currencySymbol}{minPrice.toFixed(2)}</div>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Highest Price</div>
-          <div className="text-lg font-bold text-red-500">₹{maxPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-red-500">{currencySymbol}{maxPrice.toFixed(2)}</div>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Average Price</div>
-          <div className="text-lg font-bold text-gray-700">₹{avgPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-gray-700">{currencySymbol}{avgPrice.toFixed(2)}</div>
         </div>
       </div>
 
@@ -98,6 +100,7 @@ export default function PriceChart({ productId }) {
           <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
           <YAxis tick={{ fontSize: 12 }} stroke="#9ca3af" axisLine={false} tickLine={false} />
           <Tooltip
+            formatter={(value) => [`${currencySymbol}${value}`, "Price"]}
             contentStyle={{
               backgroundColor: "white",
               border: "1px solid #e5e7eb",
