@@ -63,19 +63,19 @@ export default function PriceChart({ productId }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Current Price</div>
-          <div className="text-lg font-bold text-gray-900">{currentPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-gray-900">₹{currentPrice.toFixed(2)}</div>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Lowest Price</div>
-          <div className="text-lg font-bold text-green-600">{minPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-green-600">₹{minPrice.toFixed(2)}</div>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Highest Price</div>
-          <div className="text-lg font-bold text-red-500">{maxPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-red-500">₹{maxPrice.toFixed(2)}</div>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="text-xs text-gray-500 mb-1">Average Price</div>
-          <div className="text-lg font-bold text-gray-700">{avgPrice.toFixed(2)}</div>
+          <div className="text-lg font-bold text-gray-700">₹{avgPrice.toFixed(2)}</div>
         </div>
       </div>
 

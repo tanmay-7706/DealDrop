@@ -67,7 +67,7 @@ export default function ProductCard({ product, isPublic = false }) {
 
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-bold text-orange-500">
-                {product.currency} {product.current_price}
+                ₹{product.current_price}
               </span>
               <div className="flex gap-1 ml-auto md:ml-2">
                 <Badge variant="secondary" className="gap-1 bg-gray-100">
