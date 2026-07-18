@@ -177,3 +177,23 @@ export async function getTrendingProducts() {
     return [];
   }
 }
+
+export async function updateTargetPrice(productId, targetPrice) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { error: "Not authenticated" };
+
+    const { error } = await supabase
+      .from("products")
+      .update({ target_price: targetPrice || null })
+      .eq("id", productId)
+      .eq("user_id", user.id);
+
+    if (error) throw error;
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    return { error: error.message || "Failed to update target price" };
+  }
+}

@@ -57,7 +57,7 @@ export async function POST(request) {
           })
           .eq("id", product.id);
 
-        if (oldPrice !== newPrice) {
+          if (oldPrice !== newPrice) {
           await supabase.from("price_history").insert({
             product_id: product.id,
             price: newPrice,
@@ -66,7 +66,12 @@ export async function POST(request) {
 
           results.priceChanges++;
 
-          if (newPrice < oldPrice) {
+          // Alert logic: If there's a target price, only alert if it drops at or below target
+          // If no target price, alert on any drop
+          const isBelowTarget = product.target_price && newPrice <= product.target_price && oldPrice > product.target_price;
+          const isGenericDrop = !product.target_price && newPrice < oldPrice;
+
+          if (isBelowTarget || isGenericDrop) {
             const {
               data: { user },
             } = await supabase.auth.admin.getUserById(product.user_id);

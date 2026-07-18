@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addProduct } from "@/app/actions";
 import AuthModal from "./AuthModal";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,26 @@ import { toast } from "sonner";
 export default function AddProductForm({ user }) {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
   const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const loadingTexts = [
+    "Connecting to store...",
+    "Extracting price data...",
+    "Saving to dashboard..."
+  ];
+  
+  useEffect(() => {
+    let interval;
+    if (loading) {
+      interval = setInterval(() => {
+        setLoadingStep((prev) => (prev < loadingTexts.length - 1 ? prev + 1 : prev));
+      }, 3000);
+    } else {
+      setLoadingStep(0);
+    }
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,7 +80,7 @@ export default function AddProductForm({ user }) {
             {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Adding...
+                {loadingTexts[loadingStep]}
               </>
             ) : (
               "Track Price"
