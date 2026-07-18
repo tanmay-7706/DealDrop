@@ -197,3 +197,52 @@ export async function updateTargetPrice(productId, targetPrice) {
     return { error: error.message || "Failed to update target price" };
   }
 }
+
+export async function getUserSettings() {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return null;
+
+    const { data, error } = await supabase
+      .from("user_settings")
+      .select("*")
+      .eq("user_id", user.id)
+      .single();
+
+    // If no settings exist yet, return defaults
+    if (error && error.code === 'PGRST116') {
+      return { default_currency: 'INR', discord_webhook_url: null };
+    }
+    if (error) throw error;
+    
+    return data;
+  } catch (error) {
+    console.error("Get user settings error:", error);
+    return null;
+  }
+}
+
+export async function updateUserSettings(settings) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return { error: "Not authenticated" };
+
+    const { error } = await supabase
+      .from("user_settings")
+      .upsert({ 
+        user_id: user.id, 
+        ...settings,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id' });
+
+    if (error) throw error;
+    revalidatePath("/settings");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Update user settings error:", error);
+    return { error: error.message || "Failed to update settings" };
+  }
+}

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { scrapeProduct } from "@/lib/firecrawl";
 import { sendPriceDropAlert } from "@/lib/email";
+import { sendDiscordAlert } from "@/lib/discord";
 
 export async function POST(request) {
   try {
@@ -87,6 +88,22 @@ export async function POST(request) {
               if (emailResult.success) {
                 results.alertsSent++;
               }
+            }
+
+            // Send Discord Alert if configured
+            const { data: settings } = await supabase
+              .from("user_settings")
+              .select("discord_webhook_url")
+              .eq("user_id", product.user_id)
+              .single();
+
+            if (settings?.discord_webhook_url) {
+              await sendDiscordAlert(
+                settings.discord_webhook_url,
+                product,
+                oldPrice,
+                newPrice
+              );
             }
           }
         }

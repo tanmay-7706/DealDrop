@@ -4,19 +4,28 @@ import { useState } from "react";
 import { signOut } from "@/app/actions";
 import AuthModal from "./AuthModal";
 import { Button } from "@/components/ui/button";
-import { LogIn, LogOut } from "lucide-react";
+import { LogIn, LogOut, Settings } from "lucide-react";
+import Link from "next/link";
 
 export default function AuthButton({ user }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   if (user) {
     return (
-      <form action={signOut}>
-        <Button variant="ghost" size="sm" type="submit" className="gap-2">
-          <LogOut className="w-4 h-4" />
-          Sign Out
+      <div className="flex items-center gap-2">
+        <Button variant="ghost" size="sm" asChild className="gap-2">
+          <Link href="/settings">
+            <Settings className="w-4 h-4" />
+            Settings
+          </Link>
         </Button>
-      </form>
+        <form action={signOut}>
+          <Button variant="ghost" size="sm" type="submit" className="gap-2">
+            <LogOut className="w-4 h-4" />
+            Sign Out
+          </Button>
+        </form>
+      </div>
     );
   }
 
