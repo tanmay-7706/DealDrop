@@ -21,7 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { updateTargetPrice, deleteProduct } from "@/app/actions";
+import { updateTargetPrice } from "@/app/actions";
 import {
   ExternalLink,
   Trash2,
